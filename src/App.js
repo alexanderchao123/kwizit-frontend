@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import NavContainer from './containers/NavContainer'
+import UserContainer from './containers/UserContainer'
 import Home from './components/layouts/Home';
 import './App.css';
 
@@ -11,10 +12,11 @@ class App extends Component {
         <NavContainer/>
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/users" component={UserContainer}
         </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(connect()(App));
