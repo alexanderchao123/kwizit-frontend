@@ -2,7 +2,7 @@
 export const addUser = (user) => {
   return {
     type: "SIGN_IN_USER",
-    payload: user
+    payload: {user: user, isAuthenticated: true}
   }
 }
 
@@ -30,7 +30,6 @@ export const createUser = (user) => {
       dispatch(addUser(json.user))
       localStorage.setItem("token", json.jwt)
     })
-    .catch(error => console.log(error))
   }
 }
 
@@ -49,7 +48,6 @@ export const authenticateUser = (userInfo) => {
       dispatch(addUser(json.user))
       localStorage.setItem("token", json.jwt)
     })
-    .catch(error => console.log(error))
   }
 }
 
@@ -65,6 +63,5 @@ export const getUser = (token) => {
     })
     .then(res => res.json())
     .then(json => dispatch(addUser(json.user)))
-    .catch(error => console.log(error))
   }
 }

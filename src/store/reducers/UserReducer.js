@@ -6,7 +6,7 @@ let initialState = {
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
       case 'SIGN_IN_USER':
-        return {...state, user: action.payload, isAuthenticated: true}
+        return {...state, ...action.payload}
       case 'SIGN_OUT_USER':
         return {...state, ...action.payload}
       default:
