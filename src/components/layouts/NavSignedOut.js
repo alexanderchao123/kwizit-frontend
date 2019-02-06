@@ -8,7 +8,8 @@ class NavSignedOut extends Component {
         <ul>
           <Link to="/"><li>Home</li></Link>
           <Link to="/quizzes"><li>Explore Quizzes</li></Link>
-          <Link to="/signup"><li>Sign Up</li></Link>
+          <Link to="/rounds/join"><li>Join Game</li></Link>
+          <Link to="/users/signup"><li>Sign Up</li></Link>
           <Link to="/users/signin"><li>Sign In</li></Link>
         </ul>
       </nav>

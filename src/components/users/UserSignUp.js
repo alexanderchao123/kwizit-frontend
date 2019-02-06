@@ -22,7 +22,7 @@ class UserNew extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.createUser(this.state)
-    .then(this.props.history.push('/dashboard'));
+    .then(this.props.history.push('/users/dashboard'));
   }
 
   render() {

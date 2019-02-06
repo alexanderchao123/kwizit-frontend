@@ -4,9 +4,7 @@ import NavSignedIn from '../components/layouts/NavSignedIn'
 import NavSignedOut from '../components/layouts/NavSignedOut'
 
 class NavContainer extends Component {
-  isSignedIn = () => {
-    return !!this.props.user && this.props.isAuthenticated
-  }
+  isSignedIn = () => this.props.user && this.props.isAuthenticated
 
   render() {
     return(

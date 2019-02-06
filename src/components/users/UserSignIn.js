@@ -19,7 +19,7 @@ class UserSignIn extends Component {
   submitHandler = (event) => {
     event.preventDefault()
     this.props.authenticateUser(this.state)
-    .then(this.props.history.push('/dashboard'))
+    .then(this.props.history.push('/users/dashboard'))
   }
 
   render() {
