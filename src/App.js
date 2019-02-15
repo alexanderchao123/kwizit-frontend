@@ -27,7 +27,9 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {getUser: (token) => dispatch(getUser(token))}
+  return {
+    getUser: (token) => dispatch(getUser(token))
+  }
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

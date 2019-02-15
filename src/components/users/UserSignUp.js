@@ -20,9 +20,12 @@ class UserNew extends Component {
   }
 
   submitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     this.props.createUser(this.state)
-    .then(this.props.history.push('/users/dashboard'));
+    .then(json => {
+      localStorage.setItem("token", json.jwt)
+      this.props.history.push("/users/dashboard")
+    })
   }
 
   render() {

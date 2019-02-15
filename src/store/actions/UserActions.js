@@ -1,5 +1,5 @@
 /*-------- Action Creators --------*/
-export const addUser = (user) => {
+export const signInUser = (user) => {
   return {
     type: "SIGN_IN_USER",
     payload: {user: user, isAuthenticated: true}
@@ -27,8 +27,8 @@ export const createUser = (user) => {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(addUser(json.user))
-      localStorage.setItem("token", json.jwt)
+      dispatch(signInUser(json.user))
+      return json
     })
   }
 }
@@ -45,8 +45,8 @@ export const authenticateUser = (userInfo) => {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(addUser(json.user))
-      localStorage.setItem("token", json.jwt)
+      dispatch(signInUser(json.user))
+      return json
     })
   }
 }
@@ -62,6 +62,6 @@ export const getUser = (token) => {
       }
     })
     .then(res => res.json())
-    .then(json => dispatch(addUser(json.user)))
+    .then(json => dispatch(signInUser(json.user)))
   }
 }
