@@ -5,6 +5,9 @@ import { createRound } from '../../store/actions/RoundActions'
 
 class QuizShow extends Component {
   clickHandler = (event) => {
+    let quizId = this.props.match.params.quizId
+    let token = localStorage.getItem("token")
+    this.props.createRound(quizId, token)
   }
 
   componentDidMount() {
@@ -31,7 +34,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getQuiz: (quizId) => dispatch(getQuiz(quizId))
+    getQuiz: (quizId) => dispatch(getQuiz(quizId)),
+    createRound: (quizId, token) => dispatch(createRound(quizId, token))
   }
 }
 
