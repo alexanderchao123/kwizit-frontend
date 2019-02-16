@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { getQuiz } from '../../store/actions/QuizActions'
 
 class QuizShow extends Component {
+  clickHandler = (event) => {
+  }
+
   componentDidMount() {
     let quizId = this.props.match.params.quizId
     this.props.getQuiz(quizId)
@@ -13,6 +16,7 @@ class QuizShow extends Component {
       <Fragment>
         <h1>{this.props.quiz.title}</h1>
         <p>{this.props.quiz.description}</p>
+        <button type="button" onClick={this.clickHandler}>Play</button>
       </Fragment>
     )
   }
