@@ -17,7 +17,7 @@ class QuizIndex extends Component {
 
     return(
       <Fragment>
-        <h1>Quiz Index</h1>
+        <h1>Quizzes</h1>
         {quizzes}
       </Fragment>
     )

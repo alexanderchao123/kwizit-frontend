@@ -1,4 +1,11 @@
 /*-------- Action Creators --------*/
+export const addQuiz = (quiz) => {
+  return {
+    type: "ADD_QUIZ",
+    payload: quiz
+  }
+}
+
 export const addQuizzes = (quizzes) => {
   return {
     type: "ADD_QUIZZES",
@@ -8,9 +15,17 @@ export const addQuizzes = (quizzes) => {
 
 
 /*-------- Thunk Creators --------*/
+export const getQuiz = (quizId) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/quizzes/${quizId}`)
+    .then(res => res.json())
+    .then(json => dispatch(addQuiz(json.quiz)))
+  }
+}
+
 export const getQuizzes = () => {
   return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/quizzes")
+    return fetch("http://localhost:3000/api/v1/quizzes")
     .then(res => res.json())
     .then(json => dispatch(addQuizzes(json.quizzes)))
   }

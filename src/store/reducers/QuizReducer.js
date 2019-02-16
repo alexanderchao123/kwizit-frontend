@@ -1,9 +1,12 @@
 let initialState = {
-  quizzes: []
+  quizzes: [],
+  current_quiz: {}
 }
 
 export default function quizReducer(state = initialState, action) {
     switch (action.type) {
+      case 'ADD_QUIZ':
+        return {...state, current_quiz: action.payload}
       case 'ADD_QUIZZES':
         return {...state, quizzes: action.payload}
       default:
