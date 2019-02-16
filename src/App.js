@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import NavContainer from './containers/NavContainer'
 import UserContainer from './containers/UserContainer'
+import QuizContainer from './containers/QuizContainer'
 import Home from './components/layouts/Home';
 import { getUser } from './store/actions/UserActions'
 import './App.css';
@@ -19,6 +20,7 @@ class App extends Component {
         <NavContainer/>
         <Switch>
           <Route path="/users" component={UserContainer}/>
+          <Route path="/quizzes" component={QuizContainer}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>
