@@ -4,7 +4,11 @@ import { Switch, Route} from 'react-router-dom'
 class QuizContainer extends Component {
   render() {
     return(
-      <h1>QuizContainer</h1>
+      <Fragment>
+        <Switch>
+          
+        </Switch>
+      </Fragment>
     )
   }
 }
