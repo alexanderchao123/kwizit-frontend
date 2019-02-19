@@ -11,6 +11,8 @@ export default function quizReducer(state = initialState, action) {
         return {...state, quizzes: action.payload}
       case 'REMOVE_QUIZ':
         return {...state, current_quiz: action.payload}
+      case 'REMOVE_QUIZZES':
+        return {...state, quizzes: action.payload}
       default:
         return state;
     }
