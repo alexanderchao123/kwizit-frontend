@@ -10,11 +10,6 @@ import { getUser } from './store/actions/UserActions'
 import './App.css';
 
 class App extends Component {
-  componentDidMount() {
-    let token = localStorage.getItem("token")
-    if (token) this.props.getUser(token)
-  }
-
   render() {
     return (
       <div className="App">
@@ -27,6 +22,11 @@ class App extends Component {
         </Switch>
       </div>
     );
+  }
+
+  componentDidMount() {
+    let token = localStorage.getItem("token")
+    if (token) this.props.getUser(token)
   }
 }
 

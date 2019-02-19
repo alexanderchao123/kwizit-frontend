@@ -10,15 +10,6 @@ class QuizShow extends Component {
     this.props.createRound(quizId, token)
   }
 
-  componentDidMount() {
-    let quizId = this.props.match.params.quizId
-    this.props.getQuiz(quizId)
-  }
-
-  componentWillUnmount() {
-    this.props.removeQuiz()
-  }
-
   render() {
     return(
       <Fragment>
@@ -27,6 +18,15 @@ class QuizShow extends Component {
         <button type="button" onClick={this.clickHandler}>Play</button>
       </Fragment>
     )
+  }
+
+  componentDidMount() {
+    let quizId = this.props.match.params.quizId
+    this.props.getQuiz(quizId)
+  }
+
+  componentWillUnmount() {
+    this.props.removeQuiz()
   }
 }
 
