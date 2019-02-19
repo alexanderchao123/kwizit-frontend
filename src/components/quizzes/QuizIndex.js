@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getQuizzes } from '../../store/actions/QuizActions'
+import { getQuizzes, removeQuizzes } from '../../store/actions/QuizActions'
 
 class QuizIndex extends Component {
   componentDidMount() {
     this.props.getQuizzes()
+  }
+
+  componentWillUnmount() {
+    this.props.removeQuizzes()
   }
 
   render() {
@@ -32,7 +36,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getQuizzes: () => dispatch(getQuizzes())
+    getQuizzes: () => dispatch(getQuizzes()),
+    removeQuizzes: () => dispatch(removeQuizzes())
   }
 }
 

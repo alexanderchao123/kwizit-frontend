@@ -20,6 +20,13 @@ export const removeQuiz = () => {
   }
 }
 
+export const removeQuizzes = () => {
+  return {
+    type: "REMOVE_QUIZZES",
+    payload: []
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const getQuiz = (quizId) => {
