@@ -1,5 +1,5 @@
 let initialState = {
-  user: undefined,
+  user: {},
   isAuthenticated: false
 }
 
