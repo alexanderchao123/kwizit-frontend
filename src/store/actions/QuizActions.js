@@ -13,6 +13,13 @@ export const addQuizzes = (quizzes) => {
   }
 }
 
+export const removeQuiz = () => {
+  return {
+    type: "REMOVE_QUIZ",
+    payload: {}
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const getQuiz = (quizId) => {

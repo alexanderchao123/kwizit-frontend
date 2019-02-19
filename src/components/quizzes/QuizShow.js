@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { getQuiz } from '../../store/actions/QuizActions'
+import { getQuiz, removeQuiz } from '../../store/actions/QuizActions'
 import { createRound } from '../../store/actions/RoundActions'
 
 class QuizShow extends Component {
@@ -13,6 +13,10 @@ class QuizShow extends Component {
   componentDidMount() {
     let quizId = this.props.match.params.quizId
     this.props.getQuiz(quizId)
+  }
+
+  componentWillUnmount() {
+    this.props.removeQuiz()
   }
 
   render() {
@@ -35,6 +39,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getQuiz: (quizId) => dispatch(getQuiz(quizId)),
+    removeQuiz: () => dispatch(removeQuiz()),
     createRound: (quizId, token) => dispatch(createRound(quizId, token))
   }
 }
