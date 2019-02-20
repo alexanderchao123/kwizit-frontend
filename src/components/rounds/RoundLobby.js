@@ -3,17 +3,21 @@ import { connect } from 'react-redux'
 import { authenticateRound } from '../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
+  clickHandler = (event) => {
+    console.log("Round Started")
+  }
+
   render() {
     return(
       <div>
         <h1>Round Lobby</h1>
         <h4>GAME PIN: {this.props.round.pin}</h4>
+        <button type="button" onClick={this.clickHandler}>Start Round</button>
       </div>
     )
   }
 
   componentDidMount() {
-    // dispatch thunk action to authenticate round then set state
     let roundId = this.props.match.params.pin
     this.props.authenticateRound(roundId)
   }
