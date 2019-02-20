@@ -6,7 +6,7 @@ import UserContainer from './containers/UserContainer'
 import QuizContainer from './containers/QuizContainer'
 import RoundContainer from './containers/RoundContainer'
 import Home from './components/layouts/Home';
-import { getUser } from './store/actions/UserActions'
+import { authenticateToken } from './store/actions/UserActions'
 import './App.css';
 
 class App extends Component {
@@ -26,13 +26,13 @@ class App extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem("token")
-    if (token) this.props.getUser(token)
+    if (token) this.props.authenticateToken(token)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: (token) => dispatch(getUser(token))
+    authenticateToken: (token) => dispatch(authenticateToken(token))
   }
 }
 

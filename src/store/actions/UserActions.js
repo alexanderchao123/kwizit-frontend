@@ -57,7 +57,7 @@ export const authenticateUser = (userInfo) => {
   }
 }
 
-export const getUser = (token) => {
+export const authenticateToken = (token) => {
   return (dispatch) => {
     return fetch("http://localhost:3000/api/v1/authenticate_token", {
       method: "GET",
