@@ -1,7 +1,7 @@
 /*-------- Action Creators --------*/
-export const signInUser = (user) => {
+export const addUser = (user) => {
   return {
-    type: "SIGN_IN_USER",
+    type: "ADD_USER",
     payload: {
       user: user,
       isAuthenticated: true
@@ -9,9 +9,9 @@ export const signInUser = (user) => {
   }
 }
 
-export const signOutUser = () => {
+export const removeUser = () => {
   return {
-    type: "SIGN_OUT_USER",
+    type: "REMOVE_USER",
     payload: {
       user: {},
       isAuthenticated: false
@@ -33,7 +33,7 @@ export const createUser = (user) => {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(signInUser(json.user))
+      dispatch(addUser(json.user))
       return json
     })
   }
@@ -41,7 +41,7 @@ export const createUser = (user) => {
 
 export const authenticateUser = (userInfo) => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/authenticate", {
+    return fetch("http://localhost:3000/api/v1/authenticate_user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export const authenticateUser = (userInfo) => {
     })
     .then(res => res.json())
     .then(json => {
-      dispatch(signInUser(json.user))
+      dispatch(addUser(json.user))
       return json
     })
   }
@@ -68,6 +68,6 @@ export const getUser = (token) => {
       }
     })
     .then(res => res.json())
-    .then(json => dispatch(signInUser(json.user)))
+    .then(json => dispatch(addUser(json.user)))
   }
 }

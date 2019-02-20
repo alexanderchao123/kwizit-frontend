@@ -5,9 +5,13 @@ class RoundLobby extends Component {
     return(
       <div>
         <h1>Round Lobby</h1>
-        <h4>{this.props.match.params.pin}</h4>
+        <h4>GAME PIN: {this.props.match.params.pin}</h4>
       </div>
     )
+  }
+
+  componentDidMount() {
+    // dispatch thunk action to authenticate round then set state
   }
 }
 

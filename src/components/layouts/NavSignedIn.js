@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOutUser } from '../../store/actions/UserActions';
+import { removeUser } from '../../store/actions/UserActions';
 
 class NavSignedIn extends Component {
   clickHandler = (event) => {
-    this.props.signOutUser()
+    this.props.removeUser()
     localStorage.removeItem("token")
   }
 
@@ -25,7 +25,7 @@ class NavSignedIn extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signOutUser: () => dispatch(signOutUser())
+    removeUser: () => dispatch(removeUser())
   }
 }
 
