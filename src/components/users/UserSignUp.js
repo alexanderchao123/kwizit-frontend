@@ -16,7 +16,9 @@ class UserNew extends Component {
   }
 
   changeHandler = (event) => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   submitHandler = (event) => {

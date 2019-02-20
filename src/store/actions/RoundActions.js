@@ -21,7 +21,7 @@ export const createRound = (quizId, token) => {
     .then(res => res.json())
     .then(json => {
       dispatch(addRound(json.round))
-      return json.round
+      return json
     })
   }
 }

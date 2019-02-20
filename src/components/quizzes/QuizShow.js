@@ -8,6 +8,7 @@ class QuizShow extends Component {
     let quizId = this.props.match.params.quizId
     let token = localStorage.getItem("token")
     this.props.createRound(quizId, token)
+    .then(json => this.props.history.push(`/rounds/${json.round.pin}/lobby`))
   }
 
   render() {
