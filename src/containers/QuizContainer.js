@@ -8,8 +8,8 @@ class QuizContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/quizzes/:quizId" component={QuizShow}/>
-          <Route path="/quizzes" component={QuizIndex}/>
+          <Route path="/quizzes/:quizId" render={(props) => <QuizShow {...props}/>}/>
+          <Route path="/quizzes" render={(props) => <QuizIndex {...props}/>}/>
         </Switch>
       </Fragment>
     )

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import QuizDisplay from './QuizDisplay'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getQuizzes, removeQuizzes } from '../../store/actions/QuizActions'
 

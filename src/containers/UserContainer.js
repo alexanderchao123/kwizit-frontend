@@ -9,9 +9,9 @@ class UserContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/users/signup" component={UserSignUp}/>
-          <Route path="/users/signin" component={UserSignIn}/>
-          <Route path="/users/dashboard" component={UserDashboard}/>
+          <Route path="/users/signup" render={(props) => <UserSignUp {...props}/>}/>
+          <Route path="/users/signin" render={(props) => <UserSignIn {...props}/>}/>
+          <Route path="/users/dashboard" render={(props) => <UserDashboard {...props}/>}/>
         </Switch>
       </Fragment>
     )
