@@ -2,9 +2,11 @@ import React, { Component} from 'react'
 
 class RoundLobby extends Component {
   render() {
-    debugger
     return(
-      <h1>Round Lobby</h1>
+      <div>
+        <h1>Round Lobby</h1>
+        <h4>{this.props.match.params.pin}</h4>
+      </div>
     )
   }
 }
