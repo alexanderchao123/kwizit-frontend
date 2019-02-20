@@ -31,7 +31,7 @@ export const authenticateRound = (roundId) => {
     return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundId}`)
     .then(res => res.json())
     .then(json => {
-      debugger
+      dispatch(addRound(json.round))
     })
   }
 }
