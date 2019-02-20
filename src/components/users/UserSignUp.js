@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
 
@@ -52,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(UserNew))
+export default connect(null, mapDispatchToProps)(UserNew)

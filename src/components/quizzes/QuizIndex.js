@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import QuizDisplay from './QuizDisplay'
 import { connect } from 'react-redux'
 import { getQuizzes, removeQuizzes } from '../../store/actions/QuizActions'
+import QuizDisplay from './QuizDisplay'
 
 class QuizIndex extends Component {
   renderQuizDisplay = () => {
