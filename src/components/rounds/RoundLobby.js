@@ -1,10 +1,11 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { authenticateRound } from '../../store/actions/RoundActions'
+import RoundQuestionBlock from './RoundQuestionBlock'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    console.log("Round Started")
+    this.props.history.push(`/rounds/${this.props.round.pin}/questionblock`)
   }
 
   render() {
