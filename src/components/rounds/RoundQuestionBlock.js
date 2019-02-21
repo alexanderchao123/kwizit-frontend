@@ -3,34 +3,10 @@ import { connect } from 'react-redux'
 import { getQuestion } from '../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
-  constructor() {
-    super()
-    this.state = {
-      title: ""
-    }
-  }
-
   clickHandler = (event) => {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.getQuestion(roundPin, token)
-  }
-
-  getQuestion = () => {
-    let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(res => res.json())
-    .then(json => {
-      this.setState({title: json.question.title})
-    })
   }
 
   render() {
