@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addQuestion } from '../../store/actions/RoundActions'
 
@@ -60,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(RoundQuestionBlock))
+export default connect(null, mapDispatchToProps)(RoundQuestionBlock)
