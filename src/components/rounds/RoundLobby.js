@@ -5,7 +5,7 @@ import RoundQuestionBlock from './RoundQuestionBlock'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    this.props.history.push(`/rounds/${this.props.round.pin}/questionblock`)
+    // this.props.history.push(`/rounds/${this.props.round.pin}/questions/${}`)
   }
 
   render() {
@@ -19,8 +19,8 @@ class RoundLobby extends Component {
   }
 
   componentDidMount() {
-    let roundId = this.props.match.params.pin
-    this.props.authenticateRound(roundId)
+    let roundPin = this.props.match.params.pin
+    this.props.authenticateRound(roundPin)
   }
 }
 
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateRound: (roundId) => dispatch(authenticateRound(roundId))
+    authenticateRound: (roundPin) => dispatch(authenticateRound(roundPin))
   }
 }
 

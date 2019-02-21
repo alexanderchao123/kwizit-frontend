@@ -26,12 +26,22 @@ export const createRound = (quizId, token) => {
   }
 }
 
-export const authenticateRound = (roundId) => {
+export const authenticateRound = (roundPin) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundId}`)
+    return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
     .then(res => res.json())
     .then(json => {
       dispatch(addRound(json.round))
+    })
+  }
+}
+
+export const getCurrentQuestion = (roundPin) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`)
+    .then(res => res.json())
+    .then(json => {
+      debugger
     })
   }
 }
