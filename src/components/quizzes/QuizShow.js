@@ -33,7 +33,7 @@ class QuizShow extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    quiz: state.quizInfo.current_quiz
+    quiz: state.quizInfo.quiz
   }
 }
 

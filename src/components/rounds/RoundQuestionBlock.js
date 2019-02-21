@@ -11,7 +11,8 @@ class RoundQuestionBlock extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
-    this.props.getCurrentQuestion(roundPin)
+    let token = localStorage.getItem("token")
+    this.props.getCurrentQuestion(roundPin, token)
   }
 }
 
@@ -23,7 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentQuestion: (roundPin) => dispatch(getCurrentQuestion(roundPin))
+    getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token))
   }
 }
 
