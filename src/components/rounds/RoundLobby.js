@@ -5,7 +5,7 @@ import RoundQuestionBlock from './RoundQuestionBlock'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    // this.props.history.push(`/rounds/${this.props.round.pin}/questions/${}`)
+    this.props.history.push(`/rounds/${this.props.round.pin}/questionblock`)
   }
 
   render() {

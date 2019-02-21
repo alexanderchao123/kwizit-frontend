@@ -6,6 +6,13 @@ export const addRound = (round) => {
   }
 }
 
+export const addQuestion = (question) => {
+  return {
+    type: "ADD_QUESTION",
+    payload: question
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const createRound = (quizId, token) => {
@@ -32,23 +39,6 @@ export const authenticateRound = (roundPin) => {
     .then(res => res.json())
     .then(json => {
       dispatch(addRound(json.round))
-    })
-  }
-}
-
-export const getCurrentQuestion = (roundPin, token) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(res => res.json())
-    .then(json => {
-      debugger
     })
   }
 }
