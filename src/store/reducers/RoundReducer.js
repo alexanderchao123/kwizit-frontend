@@ -1,7 +1,8 @@
 let initialState = {
   round: {},
   question: {
-    title: ""
+    title: "",
+    difficulty: ""
   }
 }
 
