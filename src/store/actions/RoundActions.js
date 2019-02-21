@@ -42,3 +42,18 @@ export const authenticateRound = (roundPin) => {
     })
   }
 }
+
+export const getQuestion = (roundPin, token) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(json => dispatch(addQuestion(json.question)))
+  }
+}

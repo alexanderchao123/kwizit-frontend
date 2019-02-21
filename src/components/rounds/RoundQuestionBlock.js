@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addQuestion } from '../../store/actions/RoundActions'
+import { getQuestion } from '../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   constructor() {
@@ -11,7 +11,9 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    this.getQuestion()
+    let roundPin = this.props.match.params.pin
+    let token = localStorage.getItem("token")
+    this.props.getQuestion(roundPin, token)
   }
 
   getQuestion = () => {
@@ -36,14 +38,16 @@ class RoundQuestionBlock extends Component {
     return(
       <div>
         <h1>QuestionBlock</h1>
-        <h4>{this.state.title}</h4>
+        <h4>{this.props.question.title}</h4>
         <button type="button" onClick={this.clickHandler}>Next Question</button>
       </div>
     )
   }
 
   componentDidMount() {
-    this.getQuestion()
+    let roundPin = this.props.match.params.pin
+    let token = localStorage.getItem("token")
+    this.props.getQuestion(roundPin, token)
   }
 }
 
@@ -55,8 +59,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addQuestion: (question) => dispatch(addQuestion(question))
+    getQuestion: (roundPin, token) => dispatch(getQuestion(roundPin, token))
   }
 }
 
-export default connect(null, mapDispatchToProps)(RoundQuestionBlock)
+export default connect(mapStateToProps, mapDispatchToProps)(RoundQuestionBlock)

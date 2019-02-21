@@ -1,6 +1,8 @@
 let initialState = {
   round: {},
-  question: {}
+  question: {
+    title: ""
+  }
 }
 
 export default function roundReducer(state = initialState, action) {
