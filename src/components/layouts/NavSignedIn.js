@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeUser } from '../../store/actions/UserActions';
 
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(NavSignedIn)
+export default withRouter(connect(null, mapDispatchToProps)(NavSignedIn))

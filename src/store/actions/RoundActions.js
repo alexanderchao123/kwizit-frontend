@@ -6,10 +6,10 @@ export const addRound = (round) => {
   }
 }
 
-export const addQuestion = (question) => {
+export const addQuestion = (json) => {
   return {
     type: "ADD_QUESTION",
-    payload: question
+    payload: json
   }
 }
 
@@ -50,7 +50,7 @@ export const authenticateRound = (roundPin, token) => {
   }
 }
 
-export const getQuestion = (roundPin, token) => {
+export const getCurrentQuestion = (roundPin, token) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`, {
       method: "GET",
@@ -61,6 +61,8 @@ export const getQuestion = (roundPin, token) => {
       }
     })
     .then(res => res.json())
-    .then(json => dispatch(addQuestion(json.question)))
+    .then(json => {
+      dispatch(addQuestion(json))
+    })
   }
 }

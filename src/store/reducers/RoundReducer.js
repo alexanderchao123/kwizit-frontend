@@ -4,7 +4,8 @@ let initialState = {
     title: "",
     difficulty: "",
     time: ""
-  }
+  },
+  lastQuestion: false
 }
 
 export default function roundReducer(state = initialState, action) {
@@ -12,7 +13,7 @@ export default function roundReducer(state = initialState, action) {
       case 'ADD_ROUND':
         return {...state, round: action.payload}
       case 'ADD_QUESTION':
-        return {...state, question: action.payload}
+        return {...state, question: action.payload.question, lastQuestion: action.payload.last_question}
       default:
         return state;
     }

@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getQuestion } from '../../store/actions/RoundActions'
+import { getCurrentQuestion } from '../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   clickHandler = (event) => {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
-    this.props.getQuestion(roundPin, token)
+    this.props.getCurrentQuestion(roundPin, token)
   }
 
   render() {
     console.log(this.state)
     return(
       <div>
-        <h1>QuestionBlock</h1>
-        <h4>{this.props.question.title}</h4>
-        <button type="button" onClick={this.clickHandler}>Next Question</button>
+        {this.props.lastQuestion ? (
+          <h1>Game Over</h1>
+        ) : (
+          <div>
+            <h1>QuestionBlock</h1>
+            <h4>{this.props.question.title}</h4>
+            <button type="button" onClick={this.clickHandler}>Next Question</button>
+          </div>
+        )}
       </div>
     )
   }
@@ -23,19 +29,20 @@ class RoundQuestionBlock extends Component {
   componentDidMount() {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
-    this.props.getQuestion(roundPin, token)
+    this.props.getCurrentQuestion(roundPin, token)
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    question: state.roundInfo.question
+    question: state.roundInfo.question,
+    lastQuestion: state.roundInfo.lastQuestion
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getQuestion: (roundPin, token) => dispatch(getQuestion(roundPin, token))
+    getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token))
   }
 }
 
