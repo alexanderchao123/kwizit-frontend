@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCurrentQuestion } from '../../store/actions/RoundActions'
+import RoundGameOver from './RoundGameOver'
 
 class RoundQuestionBlock extends Component {
   clickHandler = (event) => {
@@ -10,11 +11,10 @@ class RoundQuestionBlock extends Component {
   }
 
   render() {
-    console.log(this.state)
     return(
       <div>
         {this.props.lastQuestion ? (
-          <h1>Game Over</h1>
+          <RoundGameOver/>
         ) : (
           <div>
             <h1>QuestionBlock</h1>
