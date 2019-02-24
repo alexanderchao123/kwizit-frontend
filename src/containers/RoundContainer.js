@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import RoundLobby from '../components/rounds/RoundLobby'
 import RoundQuestionBlock from '../components/rounds/RoundQuestionBlock'
 import RoundQuestionResult from '../components/rounds/RoundQuestionResult'
+import RoundScoreboard from '../components/rounds/RoundScoreboard'
 
 class RoundContainer extends Component {
   render() {
@@ -12,6 +13,7 @@ class RoundContainer extends Component {
           <Route path="/rounds/:pin/lobby" render={(props) => <RoundLobby {...props}/>}/>
           <Route path="/rounds/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props}/>}/>
           <Route path="/rounds/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
+          <Route path="/rounds/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
         </Switch>
       </Fragment>
     )
