@@ -6,8 +6,7 @@ import RoundGameOver from './RoundGameOver'
 class RoundQuestionBlock extends Component {
   clickHandler = (event) => {
     let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    this.props.getCurrentQuestion(roundPin, token)
+    this.props.history.push(`/rounds/${roundPin}/questionresult`)
   }
 
   render() {
@@ -19,7 +18,7 @@ class RoundQuestionBlock extends Component {
           <div>
             <h1>QuestionBlock</h1>
             <h4>{this.props.question.title}</h4>
-            <button type="button" onClick={this.clickHandler}>Next Question</button>
+            <button type="button" onClick={this.clickHandler}>Skip</button>
           </div>
         )}
       </div>

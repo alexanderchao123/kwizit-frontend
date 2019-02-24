@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 
 class RoundScoreboard extends Component {
+  clickHandler = (event) => {
+    let roundPin = this.props.match.params.pin
+    this.props.history.push(`/rounds/${roundPin}/questionblock`)
+  }
+
   render() {
     return(
-      <h1>Scoreboard</h1>
+      <div>
+        <h1>Scoreboard</h1>
+        <button type="button" onClick={this.clickHandler}>Next Question</button>
+      </div>
     )
   }
 }

@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 class RoundQuestionResult extends Component {
   clickHandler = (event) => {
-    debugger
-    // routes to current round's scoreboard
+    let roundPin = this.props.match.params.pin
+    this.props.history.push(`/rounds/${roundPin}/scoreboard`)
   }
 
   render() {
     return(
       <div>
         <h1>Round Question Result</h1>
-        <button>Next</button>
+        <button onClick={this.clickHandler}>Next</button>
       </div>
     )
   }
