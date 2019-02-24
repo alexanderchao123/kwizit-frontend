@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class RoundQuestionResult extends Component {
+  clickHandler = (event) => {
+    debugger
+    // routes to current round's scoreboard
+  }
+
   render() {
     return(
       <div>
@@ -8,6 +14,10 @@ class RoundQuestionResult extends Component {
         <button>Next</button>
       </div>
     )
+  }
+
+  componentDidMount() {
+    // dispatch a thunk action to request the round_questions
   }
 }
 
