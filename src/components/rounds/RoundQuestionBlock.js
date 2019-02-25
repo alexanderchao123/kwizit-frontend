@@ -7,7 +7,7 @@ class RoundQuestionBlock extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      setIntervalId: 0
+      intervalId: 0
     }
   }
 
@@ -17,15 +17,15 @@ class RoundQuestionBlock extends Component {
   }
 
   startCountdownTimer = () => {
-    return setInterval(() => {
+    let intervalId = setInterval(() => {
       if (this.props.question.time === 0 && !this.props.lastQuestion) this.pushQuestionResultRoute()
-      console.log(this.props.question.time)
       this.props.decrementTime()
     }, 1000)
+    this.setState({intervalId: intervalId})
   }
 
   stopCountdownTimer = () => {
-    clearInterval(this.state.setIntervalId)
+    clearInterval(this.state.intervalId)
   }
 
   clickHandler = (event) => {
@@ -47,9 +47,7 @@ class RoundQuestionBlock extends Component {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.getCurrentQuestion(roundPin, token)
-
-    let setIntervalId = this.startCountdownTimer()
-    this.setState({setIntervalId: setIntervalId})
+    this.startCountdownTimer()
   }
 
   componentWillUnmount() {
