@@ -70,6 +70,7 @@ export const getCurrentQuestion = (roundPin, token) => {
     .then(res => res.json())
     .then(json => {
       dispatch(addQuestion(json))
+      return json
     })
   }
 }

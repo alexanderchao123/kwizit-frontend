@@ -7,39 +7,38 @@ class RoundQuestionBlock extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      interval: ""
+      setIntervalId: 0
     }
   }
 
-  clickHandler = (event) => {
+  pushQuestionResultRoute = () => {
     let roundPin = this.props.match.params.pin
     this.props.history.push(`/rounds/${roundPin}/questionresult`)
   }
 
-  countdownQuestion = () => {
-    setInterval(() => {
-      if (this.props.question.time === 0) {
-        let roundPin = this.props.match.params.pin
-        this.props.history.push(`/rounds/${roundPin}/questionresult`)
-      }
+  startCountdownTimer = () => {
+    return setInterval(() => {
+      if (this.props.question.time === 0 && !this.props.lastQuestion) this.pushQuestionResultRoute()
       console.log(this.props.question.time)
       this.props.decrementTime()
     }, 1000)
   }
 
+  stopCountdownTimer = () => {
+    clearInterval(this.state.setIntervalId)
+  }
+
+  clickHandler = (event) => {
+    this.pushQuestionResultRoute()
+  }
+
   render() {
     return(
       <div>
-        {this.props.lastQuestion ? (
-          <RoundGameOver/>
-        ) : (
-          <div>
-            <h1>QuestionBlock</h1>
-            <h4>{this.props.question.title}</h4>
-            <div>{this.props.question.time}</div>
-            <button type="button" onClick={this.clickHandler}>Skip</button>
-          </div>
-        )}
+        <h1>QuestionBlock</h1>
+        <h4>{this.props.question.title}</h4>
+        <div>{this.props.question.time}</div>
+        <button type="button" onClick={this.clickHandler}>Skip</button>
       </div>
     )
   }
@@ -48,19 +47,13 @@ class RoundQuestionBlock extends Component {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.getCurrentQuestion(roundPin, token)
-    let countdown = setInterval(() => {
-      if (this.props.question.time === 0) {
-        let roundPin = this.props.match.params.pin
-        this.props.history.push(`/rounds/${roundPin}/questionresult`)
-      }
-      console.log(this.props.question.time)
-      this.props.decrementTime()
-    }, 1000)
-    this.setState({countdown: countdown})
+
+    let setIntervalId = this.startCountdownTimer()
+    this.setState({setIntervalId: setIntervalId})
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.countdown)
+    this.stopCountdownTimer()
   }
 }
 
