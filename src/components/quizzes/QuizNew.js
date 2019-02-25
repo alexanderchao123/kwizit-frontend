@@ -10,10 +10,29 @@ class QuizNew extends Component {
     }
   }
 
+  createQuiz = () => {
+    let token = localStorage.getItem("token")
+    fetch("http://localhost:3000/api/v1/quizzes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({quiz: this.state})
+    })
+    .then(res => res.json())
+  }
+
   changeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  clickHandler = (event) => {
+    event.preventDefault()
+    this.createQuiz()
   }
 
   render() {
@@ -23,7 +42,7 @@ class QuizNew extends Component {
         <form>
           <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.changeHandler}/></div>
           <div><textarea type="textarea" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></textarea></div>
-          <button type="submit">Create Quiz</button>
+          <button type="submit" onClick={this.clickHandler}>Create Quiz</button>
         </form>
       </div>
     )
