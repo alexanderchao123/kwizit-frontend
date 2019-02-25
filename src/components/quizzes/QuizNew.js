@@ -30,7 +30,7 @@ class QuizNew extends Component {
     })
   }
 
-  clickHandler = (event) => {
+  submitHandler = (event) => {
     event.preventDefault()
     this.createQuiz()
   }
@@ -39,10 +39,10 @@ class QuizNew extends Component {
     return(
       <div>
         <h1>Quiz Form</h1>
-        <form>
+        <form onSubmit={this.submitHandler}>
           <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.changeHandler}/></div>
           <div><textarea type="textarea" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></textarea></div>
-          <button type="submit" onClick={this.clickHandler}>Create Quiz</button>
+          <button type="submit">Create Quiz</button>
         </form>
       </div>
     )
