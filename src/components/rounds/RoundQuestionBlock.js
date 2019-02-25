@@ -9,6 +9,13 @@ class RoundQuestionBlock extends Component {
     this.props.history.push(`/rounds/${roundPin}/questionresult`)
   }
 
+  countdownQuestion = () => {
+    setTimeout(() => {
+      let roundPin = this.props.match.params.pin
+      this.props.history.push(`/rounds/${roundPin}/questionresult`)
+    }, 10000)
+  }
+
   render() {
     return(
       <div>
@@ -29,6 +36,7 @@ class RoundQuestionBlock extends Component {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.getCurrentQuestion(roundPin, token)
+    this.countdownQuestion()
   }
 }
 
