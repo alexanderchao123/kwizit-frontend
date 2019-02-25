@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 
 class QuizNew extends Component {
+  constructor() {
+    super()
+    this.state = {
+      title: "",
+      description: "",
+      questions_attributes: []
+    }
+  }
+
   render() {
     return(
-      <div>
+      <h1>
         Quiz Form
-      </div>
+      </h1>
     )
   }
 }
