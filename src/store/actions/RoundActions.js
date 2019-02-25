@@ -13,6 +13,13 @@ export const addQuestion = (json) => {
   }
 }
 
+export const decrementTime = () => {
+  return {
+    type: "DECREMENT_TIME",
+    payload: 1
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const createRound = (quizId, token) => {
