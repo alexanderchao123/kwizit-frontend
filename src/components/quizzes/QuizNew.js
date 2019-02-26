@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import QuestionNew from '../questions/QuestionNew'
 
 class QuizNew extends Component {
   constructor() {
