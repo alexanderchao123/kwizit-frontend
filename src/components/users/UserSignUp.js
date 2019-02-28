@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
 
-class UserNew extends Component {
+class UserSignUp extends Component {
   constructor() {
     super()
     this.state = {
@@ -19,6 +19,7 @@ class UserNew extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    debugger
   }
 
   submitHandler = (event) => {
@@ -28,6 +29,9 @@ class UserNew extends Component {
       localStorage.setItem("token", json.jwt)
       this.props.history.push("/users/dashboard")
     })
+
+    let formData = new FormData()
+    formData.append("user[first_name]", this.state.first_name)
   }
 
   render() {
@@ -54,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserNew)
+export default connect(null, mapDispatchToProps)(UserSignUp)
