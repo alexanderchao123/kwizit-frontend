@@ -10,7 +10,8 @@ class UserNew extends Component {
       last_name: "",
       email: "",
       password: "",
-      password_confirmation: ""
+      password_confirmation: "",
+      avatar: ""
     }
   }
 
@@ -30,6 +31,7 @@ class UserNew extends Component {
   }
 
   render() {
+    console.log(this.state)
     return(
       <div>
         <form onSubmit={this.submitHandler}>
@@ -38,6 +40,7 @@ class UserNew extends Component {
           <div><input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password_confirmation" placeholder="Password Confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} /></div>
+          <div><input type="file" name="avatar" placeholder="Avatar" value={this.state.avatar} onChange={this.changeHandler}/></div>
           <div><button type="submit">Sign Up</button></div>
         </form>
       </div>
