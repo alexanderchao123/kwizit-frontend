@@ -30,19 +30,24 @@ class UserSignUp extends Component {
   submitHandler = (event) => {
     event.preventDefault()
 
-    let formData = new FormData()
-    formData.append("user[first_name]", this.state.first_name)
-    formData.append("user[last_name]", this.state.last_name)
-    formData.append("user[email]", this.state.email)
-    formData.append("user[password]", this.state.password)
-    formData.append("user[password_confirmation]", this.state.password_confirmation)
-    formData.append("user[avatar]", this.state.avatar)
+    let userInfo = this.userData()
 
-    this.props.createUser(formData)
+    this.props.createUser(userInfo)
     .then(json => {
       localStorage.setItem("token", json.jwt)
       this.props.history.push("/users/dashboard")
     })
+  }
+
+  userData = () => {
+    let userData = new FormData()
+    userData.append("user[first_name]", this.state.first_name)
+    userData.append("user[last_name]", this.state.last_name)
+    userData.append("user[email]", this.state.email)
+    userData.append("user[password]", this.state.password)
+    userData.append("user[password_confirmation]", this.state.password_confirmation)
+    userData.append("user[avatar]", this.state.avatar)
+    return userData
   }
 
   render() {
@@ -65,7 +70,7 @@ class UserSignUp extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => dispatch(createUser(user))
+    createUser: (userInfo) => dispatch(createUser(userInfo))
   }
 }
 
