@@ -23,13 +23,13 @@ export const removeUser = () => {
 /*-------- Thunk Creators --------*/
 export const createUser = (user) => {
   return (dispatch) => {
+    debugger
     return fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Accepts: "application/json"
       },
-      body: JSON.stringify({user: user})
+      body: user
     })
     .then(res => res.json())
     .then(json => {

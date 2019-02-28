@@ -19,19 +19,30 @@ class UserSignUp extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    debugger
+  }
+
+  fileHandler = (event) => {
+    this.setState({
+      [event.target.name]: event.target.files[0]
+    })
   }
 
   submitHandler = (event) => {
     event.preventDefault()
-    this.props.createUser(this.state)
+
+    let formData = new FormData()
+    formData.append("user[first_name]", this.state.first_name)
+    formData.append("user[last_name]", this.state.last_name)
+    formData.append("user[email]", this.state.email)
+    formData.append("user[password]", this.state.password)
+    formData.append("user[password_confirmation]", this.state.password_confirmation)
+    formData.append("user[avatar]", this.state.avatar)
+
+    this.props.createUser(formData)
     .then(json => {
       localStorage.setItem("token", json.jwt)
       this.props.history.push("/users/dashboard")
     })
-
-    let formData = new FormData()
-    formData.append("user[first_name]", this.state.first_name)
   }
 
   render() {
@@ -44,7 +55,7 @@ class UserSignUp extends Component {
           <div><input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password_confirmation" placeholder="Password Confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} /></div>
-          <div><input type="file" name="avatar" placeholder="Avatar" value={this.state.avatar} onChange={this.changeHandler}/></div>
+          <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileHandler}/></div>
           <div><button type="submit">Sign Up</button></div>
         </form>
       </div>
