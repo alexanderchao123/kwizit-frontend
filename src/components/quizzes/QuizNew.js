@@ -15,7 +15,13 @@ class QuizNew extends Component {
     return {
       title: "",
       difficulty: "",
-      time: 30
+      time: 30,
+      choice_attributes: [
+        {answer: "", correct: false},
+        {answer: "", correct: false},
+        {answer: "", correct: false},
+        {answer: "", correct: false}
+      ]
     }
   }
 
