@@ -84,7 +84,7 @@ class QuizNew extends Component {
         <h1>Quiz Form</h1>
         <form onSubmit={this.submitHandler}>
           <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.changeHandler}/></div>
-          <div><textarea type="textarea" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></textarea></div>
+          <div><input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></input></div>
           {questions}
           <button type="button" onClick={this.clickHandler}>Add Question</button>
           <button type="submit">Create Quiz</button>
