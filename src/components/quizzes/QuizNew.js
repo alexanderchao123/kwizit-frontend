@@ -32,7 +32,14 @@ class QuizNew extends Component {
     })
   }
 
-  removeQuestion = () => {}
+  removeQuestion = (event, index) => {
+    let questions = this.state.questions_attributes.filter((question, questionIndex) => {
+      return questionIndex !== index
+    })
+    this.setState({
+      questions_attributes: questions
+    })
+  }
 
   changeHandler = (event) => {
     this.setState({
@@ -44,7 +51,9 @@ class QuizNew extends Component {
     let questions = this.state.questions_attributes.map((question, questionIndex) => {
       return (questionIndex === index) ? ({...question, [event.target.name]: event.target.value}) : (question)
     })
-    this.setState({questions_attributes: questions})
+    this.setState({
+      questions_attributes: questions
+    })
   }
 
   choiceChangeHandler = (event) => {
@@ -76,7 +85,7 @@ class QuizNew extends Component {
 
   render() {
     let questions = this.state.questions_attributes.map((question, index) => {
-      return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler}/>
+      return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler} removeQuestion={this.removeQuestion}/>
     })
 
     return(
