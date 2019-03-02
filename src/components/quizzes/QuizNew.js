@@ -15,7 +15,7 @@ class QuizNew extends Component {
     return {
       title: "",
       difficulty: "",
-      time: 30,
+      time: 30
     }
   }
 
@@ -26,10 +26,23 @@ class QuizNew extends Component {
     })
   }
 
+  removeQuestion = () => {}
+
   changeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  questionChangeHandler = (event, index) => {
+    let questions = this.state.questions_attributes.map((question, questionIndex) => {
+      return (questionIndex === index) ? ({...question, [event.target.name]: event.target.value}) : (question)
+    })
+    this.setState({questions_attributes: questions})
+  }
+
+  choiceChangeHandler = (event) => {
+
   }
 
   clickHandler = (event) => {
@@ -57,7 +70,7 @@ class QuizNew extends Component {
 
   render() {
     let questions = this.state.questions_attributes.map((question, index) => {
-      return <QuestionNew key={index} question={question} />
+      return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler}/>
     })
 
     return(
