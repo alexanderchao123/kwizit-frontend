@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 class QuestionNew extends Component {
   render() {
     return(
-      <div>
-        New Question
-      </div>
+      <Fragment>
+        <input type="text" name="title" placeholder="Title"/>
+      </Fragment>
     )
   }
 }
