@@ -36,13 +36,27 @@ class QuizNew extends Component {
     this.createQuiz()
   }
 
+  clickHandler = (event) => {
+    let question = {
+      title: "",
+      difficulty: "",
+      time: 30,
+    }
+
+    this.setState({
+      questions_attributes: [...this.state.questions_attributes, question]
+    })
+  }
+
   render() {
+    console.log(this.state)
     return(
       <div>
         <h1>Quiz Form</h1>
         <form onSubmit={this.submitHandler}>
           <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.changeHandler}/></div>
           <div><textarea type="textarea" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></textarea></div>
+          <button type="button" onClick={this.clickHandler}>Add Question</button>
           <button type="submit">Create Quiz</button>
         </form>
       </div>
