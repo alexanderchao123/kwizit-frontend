@@ -16,7 +16,7 @@ class QuizNew extends Component {
       title: "",
       difficulty: "",
       time: 30,
-      choice_attributes: [
+      choices_attributes: [
         {answer: "", correct: false},
         {answer: "", correct: false},
         {answer: "", correct: false},
@@ -41,23 +41,37 @@ class QuizNew extends Component {
     })
   }
 
-  changeHandler = (event) => {
+  quizChangeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  questionChangeHandler = (event, index) => {
-    let questions = this.state.questions_attributes.map((question, questionIndex) => {
-      return (questionIndex === index) ? ({...question, [event.target.name]: event.target.value}) : (question)
+  questionChangeHandler = (event, questionIndex) => {
+    let questions = this.state.questions_attributes.map((question, index) => {
+      return (index === questionIndex) ? ({...question, [event.target.name]: event.target.value}) : (question)
     })
     this.setState({
       questions_attributes: questions
     })
   }
 
-  choiceChangeHandler = (event) => {
-
+  choiceChangeHandler = (event, questionIndex, choiceIndex) => {
+    let questions = this.state.questions_attributes.map((question, qIndex) => {
+      if (qIndex === questionIndex) {
+        let choices = question.choices_attributes.map((choice, cIndex) => {
+          if (cIndex === choiceIndex) {
+            return {...choice, [event.target.name]:  event.target.value}
+          } else {
+            return choice
+          }
+        })
+        return {...question, choices_attributes: choices}
+      } else {
+        return question
+      }
+    })
+    this.setState({questions_attributes: questions})
   }
 
   clickHandler = (event) => {
@@ -84,16 +98,17 @@ class QuizNew extends Component {
   }
 
   render() {
+    console.log(this.state.questions_attributes)
     let questions = this.state.questions_attributes.map((question, index) => {
-      return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler} removeQuestion={this.removeQuestion}/>
+      return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler} removeQuestion={this.removeQuestion} choiceChangeHandler={this.choiceChangeHandler}/>
     })
 
     return(
       <div>
         <h1>Quiz Form</h1>
         <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.changeHandler}/></div>
-          <div><input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.changeHandler}></input></div>
+          <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.quizChangeHandler}/></div>
+          <div><input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.quizChangeHandler}></input></div>
           {questions}
           <button type="button" onClick={this.clickHandler}>Add Question</button>
           <button type="submit">Create Quiz</button>

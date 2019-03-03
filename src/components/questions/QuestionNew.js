@@ -11,8 +11,8 @@ class QuestionNew extends Component {
   }
 
   render() {
-    let choices = this.props.question.choice_attributes.map((choice, index) => {
-      return <ChoiceNew key={index} index={index} choice={choice}/>
+    let choices = this.props.question.choices_attributes.map((choice, index) => {
+      return <ChoiceNew key={index} choiceIndex={index} questionIndex={this.props.index} choice={choice} choiceChangeHandler={this.props.choiceChangeHandler}/>
     })
 
     return(
@@ -22,7 +22,7 @@ class QuestionNew extends Component {
         <div><input type="text" name="difficulty" placeholder="Difficulty" value={this.props.difficulty} onChange={this.changeHandler}/></div>
         <div><input type="text" name="time" placeholder="Time" value={this.props.time} onChange={this.changeHandler}/></div>
         {choices}
-        <button type="button" onClick={this.clickHandler}>Delete Question</button>
+        <div><button type="button" onClick={this.clickHandler}>Delete Question</button></div>
       </Fragment>
     )
   }
