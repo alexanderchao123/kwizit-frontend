@@ -17,10 +17,10 @@ class QuizNew extends Component {
       difficulty: "",
       time: 30,
       choices_attributes: [
-        {answer: "", correct: false},
-        {answer: "", correct: false},
-        {answer: "", correct: false},
-        {answer: "", correct: false}
+        {answer: "", correct: true},
+        {answer: "", correct: true},
+        {answer: "", correct: true},
+        {answer: "", correct: true}
       ]
     }
   }
@@ -60,8 +60,10 @@ class QuizNew extends Component {
     let questions = this.state.questions_attributes.map((question, qIndex) => {
       if (qIndex === questionIndex) {
         let choices = question.choices_attributes.map((choice, cIndex) => {
-          if (cIndex === choiceIndex) {
+          if (cIndex === choiceIndex && event.target.type === "text") {
             return {...choice, [event.target.name]:  event.target.value}
+          } else if (cIndex === choiceIndex && event.target.type === "checkbox") {
+            return {...choice, [event.target.name]:  event.target.checked}
           } else {
             return choice
           }
