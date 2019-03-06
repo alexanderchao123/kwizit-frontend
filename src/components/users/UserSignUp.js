@@ -21,17 +21,23 @@ class UserSignUp extends Component {
     })
   }
 
-  fileHandler = (event) => {
+  fileChangeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.files[0]
     })
   }
 
+  userFormData = () => {
+    let userFormData = new FormData()
+    Object.keys(this.state).forEach((keyName) => {
+      userFormData.append(`user[${keyName}]`, this.state[keyName])
+    })
+    return userFormData
+  }
+
   submitHandler = (event) => {
     event.preventDefault()
-
-    let userInfo = this.userData()
-
+    let userInfo = this.userFormData()
     this.props.createUser(userInfo)
     .then(json => {
       localStorage.setItem("token", json.jwt)
@@ -39,19 +45,7 @@ class UserSignUp extends Component {
     })
   }
 
-  userData = () => {
-    let userData = new FormData()
-    userData.append("user[first_name]", this.state.first_name)
-    userData.append("user[last_name]", this.state.last_name)
-    userData.append("user[email]", this.state.email)
-    userData.append("user[password]", this.state.password)
-    userData.append("user[password_confirmation]", this.state.password_confirmation)
-    userData.append("user[avatar]", this.state.avatar)
-    return userData
-  }
-
   render() {
-    console.log(this.state)
     return(
       <div>
         <form onSubmit={this.submitHandler}>
@@ -60,7 +54,7 @@ class UserSignUp extends Component {
           <div><input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeHandler} /></div>
           <div><input type="password" name="password_confirmation" placeholder="Password Confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} /></div>
-          <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileHandler}/></div>
+          <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileChangeHandler}/></div>
           <div><button type="submit">Sign Up</button></div>
         </form>
       </div>

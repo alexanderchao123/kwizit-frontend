@@ -7,6 +7,7 @@ class QuizNew extends Component {
     this.state = {
       title: "",
       description: "",
+      cover: "",
       questions_attributes: []
     }
   }
@@ -76,6 +77,12 @@ class QuizNew extends Component {
     this.setState({questions_attributes: questions})
   }
 
+  fileChangeHandler = (event) => {
+    this.setState({
+      [event.target.name]: event.target.files[0]
+    })
+  }
+
   clickHandler = (event) => {
     this.addQuestion()
   }
@@ -85,22 +92,30 @@ class QuizNew extends Component {
     this.createQuiz()
   }
 
+  quizData = () => {
+    let quizData = new FormData()
+    Object.keys(this.state).forEach((keyName) => {
+      quizData.append(`quiz[${keyName}]`, this.state[keyName])
+    })
+    return quizData
+  }
+
   createQuiz = () => {
     let token = localStorage.getItem("token")
+    let quizInfo = this.quizData()
+    this.quizData()
     fetch("http://localhost:3000/api/v1/quizzes", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Accepts: "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({quiz: this.state})
+      body: quizInfo
     })
     .then(res => res.json())
   }
 
   render() {
-    console.log(this.state.questions_attributes)
     let questions = this.state.questions_attributes.map((question, index) => {
       return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler} removeQuestion={this.removeQuestion} choiceChangeHandler={this.choiceChangeHandler}/>
     })
@@ -111,6 +126,7 @@ class QuizNew extends Component {
         <form onSubmit={this.submitHandler}>
           <div><input type="text" name="title" placeholder="Title" value={this.state.title} onChange={this.quizChangeHandler}/></div>
           <div><input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.quizChangeHandler}></input></div>
+          <div><input type="file" name="cover" placeholder="Cover" onChange={this.fileChangeHandler}/></div>
           {questions}
           <button type="button" onClick={this.clickHandler}>Add Question</button>
           <button type="submit">Create Quiz</button>
