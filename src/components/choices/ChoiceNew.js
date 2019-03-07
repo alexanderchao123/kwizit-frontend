@@ -8,7 +8,7 @@ class ChoiceNew extends Component {
   render() {
     return(
       <Fragment>
-        <div><input type="text" name="answer" placeholder="Answer" value={this.props.answer} onChange={this.changeHandler}/></div>
+        <div><input type="text" name="answer" value={this.props.answer} placeholder="Answer" onChange={this.changeHandler}/></div>
         <div><input type="checkbox" name="correct" checked={this.props.correct} onChange={this.changeHandler}/>Correct</div>
       </Fragment>
     )

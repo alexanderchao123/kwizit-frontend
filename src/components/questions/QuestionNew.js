@@ -18,9 +18,9 @@ class QuestionNew extends Component {
     return(
       <Fragment>
         <h4>Question {this.props.index + 1}</h4>
-        <div><input type="text" name="title" placeholder="Title" value={this.props.title} onChange={this.changeHandler}/></div>
-        <div><input type="text" name="difficulty" placeholder="Difficulty" value={this.props.difficulty} onChange={this.changeHandler}/></div>
-        <div><input type="text" name="time" placeholder="Time" value={this.props.time} onChange={this.changeHandler}/></div>
+        <div><input type="text" name="title" value={this.props.title} placeholder="Title" onChange={this.changeHandler}/></div>
+        <div><input type="text" name="difficulty" value={this.props.difficulty} placeholder="Difficulty" onChange={this.changeHandler}/></div>
+        <div><input type="text" name="time" value={this.props.time} placeholder="Time" onChange={this.changeHandler}/></div>
         {choices}
         <div><button type="button" onClick={this.clickHandler}>Delete Question</button></div>
       </Fragment>

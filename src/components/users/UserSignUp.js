@@ -49,11 +49,11 @@ class UserSignUp extends Component {
     return(
       <div>
         <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.changeHandler} /></div>
-          <div><input type="text" name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.changeHandler} /></div>
-          <div><input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeHandler} /></div>
-          <div><input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeHandler} /></div>
-          <div><input type="password" name="password_confirmation" placeholder="Password Confirmation" value={this.state.password_confirmation} onChange={this.changeHandler} /></div>
+          <div><input type="text" name="first_name" value={this.state.first_name} placeholder="First Name" onChange={this.changeHandler} /></div>
+          <div><input type="text" name="last_name" value={this.state.last_name} placeholder="Last Name" onChange={this.changeHandler} /></div>
+          <div><input type="text" name="email" value={this.state.email} placeholder="Email" onChange={this.changeHandler} /></div>
+          <div><input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.changeHandler} /></div>
+          <div><input type="password" name="password_confirmation" value={this.state.password_confirmation} placeholder="Password Confirmation" onChange={this.changeHandler} /></div>
           <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileChangeHandler}/></div>
           <div><button type="submit">Sign Up</button></div>
         </form>

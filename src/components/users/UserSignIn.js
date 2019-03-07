@@ -30,8 +30,8 @@ class UserSignIn extends Component {
     return(
       <div>
         <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.changeHandler} /></div>
-          <div><input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.changeHandler} /></div>
+          <div><input type="text" name="email" value={this.state.email} placeholder="Email" onChange={this.changeHandler} /></div>
+          <div><input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.changeHandler} /></div>
           <div><button type="submit">Sign In</button></div>
         </form>
       </div>
