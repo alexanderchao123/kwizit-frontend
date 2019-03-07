@@ -17,10 +17,10 @@ class QuizNew extends Component {
       difficulty: "",
       time: 30,
       choices_attributes: [
-        {answer: "", correct: true},
-        {answer: "", correct: true},
-        {answer: "", correct: true},
-        {answer: "", correct: true}
+        {answer: "", correct: false},
+        {answer: "", correct: false},
+        {answer: "", correct: false},
+        {answer: "", correct: false}
       ]
     }
   }
