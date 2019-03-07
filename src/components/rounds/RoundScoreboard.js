@@ -10,7 +10,7 @@ class RoundScoreboard extends Component {
     return(
       <div>
         <h1>Scoreboard</h1>
-        <button type="button" onClick={this.clickHandler}>Next Question</button>
+        <button type="button" onClick={this.clickHandler}>Next</button>
       </div>
     )
   }
