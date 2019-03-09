@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import NavContainer from './containers/NavContainer'
 import UserContainer from './containers/UserContainer'
 import QuizContainer from './containers/QuizContainer'
-import RoundContainer from './containers/RoundContainer'
+import RoundHostContainer from './containers/RoundHostContainer'
+import RoundPlayerContainer from './containers/RoundPlayerContainer'
 import Home from './components/layouts/Home';
 import { authenticateToken } from './store/actions/UserActions'
 import './App.css';
@@ -17,7 +18,8 @@ class App extends Component {
         <Switch>
           <Route path="/users" component={UserContainer}/>
           <Route path="/quizzes" component={QuizContainer}/>
-          <Route path="/rounds" component={RoundContainer} />
+          <Route path="/rounds/host" render={(props) => <RoundHostContainer {...props}/>} />
+          <Route path="/rounds/player" render={(props) => <RoundPlayerContainer {...props}/>} />
           <Route path="/" component={Home}/>
         </Switch>
       </div>
