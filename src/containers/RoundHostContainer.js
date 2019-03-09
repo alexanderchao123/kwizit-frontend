@@ -8,23 +8,32 @@ import RoundScoreboard from '../components/rounds/RoundScoreboard'
 import RoundGameOver from '../components/rounds/RoundGameOver'
 
 class RoundHostContainer extends Component {
+  constructor() {
+    super()
+    this.state = {
+      app: {
+        cable: {},
+        group: {}
+      }
+    }
+  }
+
   authenticateRound = (roundPin) => {
-    console.log("Authenticating")
     return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
-    .then(res => res.json())
+    .then(res => {
+      return res.json()
+    })
   }
 
   createSocket = (roundPin) => {
-    console.log("Connecting")
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let group = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin}, {
-      connected: function() {
-        console.log("Connected")
-      },
+      connected: function() {},
       disconnect: function() {},
       received: (data) => {},
       speak: function() {}
     })
+    this.setState({app: {cable: cable, group: group}})
   }
 
   render() {
@@ -43,10 +52,12 @@ class RoundHostContainer extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
-    // authenticate round
-    // create ws connection
     this.authenticateRound(roundPin)
-    .then(this.createSocket)
+    .then(this.createSocket(roundPin))
+  }
+
+  componentWillUnmount() {
+    // disconnect the socket connection
   }
 }
 

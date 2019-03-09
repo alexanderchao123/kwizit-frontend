@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ActionCable from 'actioncable'
 import RoundJoin from '../components/rounds/RoundJoin'
 import RoundHostContainer from './RoundHostContainer'
 

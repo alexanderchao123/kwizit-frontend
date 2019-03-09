@@ -1,5 +1,6 @@
 let initialState = {
   round: {},
+  players: [],
   question: {
     title: "",
     difficulty: "",

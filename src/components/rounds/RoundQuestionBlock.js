@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getCurrentQuestion, decrementTime } from '../../store/actions/RoundActions'
-import RoundGameOver from './RoundGameOver'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
