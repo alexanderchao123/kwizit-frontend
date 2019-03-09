@@ -20,6 +20,13 @@ export const decrementTime = () => {
   }
 }
 
+export const addPlayer = (player) => {
+  return {
+    type: "ADD_PLAYER",
+    payload: player
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const createRound = (quizId, token) => {

@@ -4,7 +4,7 @@ import { authenticateRound } from '../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    this.props.history.push(`/rounds/${this.props.round.pin}/questionblock`)
+    this.props.history.push(`/rounds/host/${this.props.round.pin}/questionblock`)
   }
 
   render() {

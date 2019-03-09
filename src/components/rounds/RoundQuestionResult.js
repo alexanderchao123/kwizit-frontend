@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class RoundQuestionResult extends Component {
   clickHandler = (event) => {
     let roundPin = this.props.match.params.pin
-    this.props.history.push(`/rounds/${roundPin}/scoreboard`)
+    this.props.history.push(`/rounds/host/${roundPin}/scoreboard`)
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import RoundJoin from '../components/rounds/RoundJoin'
+import RoundPlayerContainer from './RoundPlayerContainer'
 import RoundHostContainer from './RoundHostContainer'
 
 class RoundContainer extends Component {
@@ -8,8 +8,8 @@ class RoundContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/join" render={(props) => <RoundJoin {...props}/>}/>
-          <Route path="/rounds/:pin" render={(props) => <RoundHostContainer {...props}/>}/>
+          <Route path="/rounds/player" render={(props) => <RoundPlayerContainer {...props}/>}/>
+          <Route path="/rounds/host" render={(props) => <RoundHostContainer {...props}/>}/>
         </Switch>
       </Fragment>
     )

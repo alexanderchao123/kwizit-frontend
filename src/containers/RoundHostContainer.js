@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import ActionCable from 'actioncable'
+import { connect } from 'react-redux'
+import { addPlayer } from '../store/actions/RoundActions'
 import RoundLobby from '../components/rounds/RoundLobby'
 import RoundQuestionBlock from '../components/rounds/RoundQuestionBlock'
 import RoundQuestionResult from '../components/rounds/RoundQuestionResult'
@@ -11,10 +13,8 @@ class RoundHostContainer extends Component {
   constructor() {
     super()
     this.state = {
-      app: {
-        cable: {},
-        group: {}
-      }
+      cable: {},
+      socket: {}
     }
   }
 
@@ -27,24 +27,35 @@ class RoundHostContainer extends Component {
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
-    let group = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin}, {
+    let socket = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin}, {
       connected: function() {},
       disconnect: function() {},
-      received: (data) => {},
+      received: (response) => {
+        switch (response.type) {
+          case "Successfully Connected":
+            this.props.addPlayer(response.data)
+            break
+          default:
+            console.log("Connected")
+        }
+      },
       speak: function() {}
     })
-    this.setState({app: {cable: cable, group: group}})
+    this.setState({
+      cable: cable,
+      socket: socket
+    })
   }
 
   render() {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/:pin/lobby" render={(props) => <RoundLobby {...props}/>}/>
-          <Route path="/rounds/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props}/>}/>
-          <Route path="/rounds/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
-          <Route path="/rounds/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
-          <Route path="/rounds/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
+          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props}/>}/>
+          <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
+          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
+          <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
         </Switch>
       </Fragment>
     )
@@ -61,4 +72,16 @@ class RoundHostContainer extends Component {
   }
 }
 
-export default RoundHostContainer
+const mapStateToProps = (state) => {
+  return {
+    players: state.roundInfo.players
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addPlayer: (player) => dispatch(addPlayer(player))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoundHostContainer)

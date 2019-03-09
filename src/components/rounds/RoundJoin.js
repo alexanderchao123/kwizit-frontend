@@ -16,7 +16,7 @@ class RoundJoin extends Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.submitHandler}>
         <div><input type="text" name="pin" value={this.state.pin} placeholder="Pin" onChange={this.changeHandler}/></div>
         <div><button type="submit">Enter</button></div>
       </form>

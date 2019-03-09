@@ -12,7 +12,7 @@ class RoundQuestionBlock extends Component {
 
   pushQuestionResultRoute = () => {
     let roundPin = this.props.match.params.pin
-    this.props.history.push(`/rounds/${roundPin}/questionresult`)
+    this.props.history.push(`/rounds/host/${roundPin}/questionresult`)
   }
 
   startCountdownTimer = () => {
