@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionCable from 'actioncable'
-import RoundJoin from '../components/rounds/player/RoundJoin'
 import RoundInstructions from '../components/rounds/player/RoundInstructions'
 import RoundChoiceBlock from '../components/rounds/player/RoundChoiceBlock'
 import RoundChoiceResult from '../components/rounds/player/RoundChoiceResult'
@@ -47,13 +46,15 @@ class RoundPlayerContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/player/join" render={(props) => <RoundJoin {...props}/>}/>
           <Route path="/rounds/player/:pin/instructions" render={(props) => <RoundInstructions {...props}/>}/>
           <Route path="/rounds/player/:pin/choiceblock" render={(props) => <RoundChoiceBlock {...props}/>}/>
           <Route path="/rounds/player/:pin/choiceresult" render={(props) => <RoundChoiceResult {...props}/>}/>
         </Switch>
       </Fragment>
     )
+  }
+
+  componentDidMount() {
   }
 }
 
