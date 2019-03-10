@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ActionCable from 'actioncable'
 import { connect } from 'react-redux'
+import ActionCable from 'actioncable'
 import { addPlayer } from '../store/actions/RoundActions'
-import RoundLobby from '../components/rounds/RoundLobby'
-import RoundQuestionBlock from '../components/rounds/RoundQuestionBlock'
-import RoundQuestionResult from '../components/rounds/RoundQuestionResult'
-import RoundScoreboard from '../components/rounds/RoundScoreboard'
-import RoundGameOver from '../components/rounds/RoundGameOver'
+import RoundLobby from '../components/rounds/host/RoundLobby'
+import RoundQuestionBlock from '../components/rounds/host/RoundQuestionBlock'
+import RoundQuestionResult from '../components/rounds/host/RoundQuestionResult'
+import RoundScoreboard from '../components/rounds/host/RoundScoreboard'
+import RoundGameOver from '../components/rounds/host/RoundGameOver'
 
 class RoundHostContainer extends Component {
   constructor() {
@@ -20,9 +20,7 @@ class RoundHostContainer extends Component {
 
   authenticateRound = (roundPin) => {
     return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
-    .then(res => {
-      return res.json()
-    })
+    .then(res => res.json())
   }
 
   createSocket = (roundPin) => {

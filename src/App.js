@@ -18,8 +18,8 @@ class App extends Component {
         <Switch>
           <Route path="/users" component={UserContainer}/>
           <Route path="/quizzes" component={QuizContainer}/>
-          <Route path="/rounds/host" render={(props) => <RoundHostContainer {...props}/>} />
-          <Route path="/rounds/player" render={(props) => <RoundPlayerContainer {...props}/>} />
+          <Route path="/rounds/host/:pin" render={(props) => <RoundHostContainer {...props}/>} />
+          <Route path="/rounds/player/:pin" render={(props) => <RoundPlayerContainer {...props}/>} />
           <Route path="/" component={Home}/>
         </Switch>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { authenticateRound } from '../../store/actions/RoundActions'
+import { authenticateRound } from '../../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
