@@ -11,7 +11,7 @@ class RoundContainer extends Component {
         <Switch>
           <Route path="/rounds/join" render={(props) => <RoundJoin {...props}/>}/>
           <Route path="/rounds/host/:pin" render={(props) => <RoundHostContainer {...props}/>}/>
-          <Route path="/rounds/players/:pin" render={(props) => <RoundPlayerContainer {...props}/>}/>
+          <Route path="/rounds/player/:pin" render={(props) => <RoundPlayerContainer {...props}/>}/>
         </Switch>
       </Fragment>
     )

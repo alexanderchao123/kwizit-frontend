@@ -8,6 +8,11 @@ class RoundJoin extends Component {
     }
   }
 
+  authenticateRound = (roundPin) => {
+    return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
+    .then(res => res.json())
+  }
+
   changeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -16,8 +21,9 @@ class RoundJoin extends Component {
 
   submitHandler = (event) => {
     event.preventDefault()
-    // authenticate round pin
-    // then create socket connection
+    let roundPin = this.state.pin
+    this.authenticateRound(roundPin)
+    .then(json => this.props.history.push(`/rounds/player/${roundPin}/instructions`))
   }
 
   render() {

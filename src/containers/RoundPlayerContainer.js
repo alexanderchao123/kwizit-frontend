@@ -28,7 +28,7 @@ class RoundPlayerContainer extends Component {
       received: (response) => {
         switch (response.type) {
           case "Successfully Connected":
-            this.props.addPlayer(response.data)
+            console.log(response.type)
             break
           default:
             console.log("Connected")
@@ -55,6 +55,13 @@ class RoundPlayerContainer extends Component {
   }
 
   componentDidMount() {
+    let roundPin = this.props.match.params.pin
+    this.authenticateRound(roundPin)
+    .then(() => this.createSocket(roundPin))
+  }
+
+  componentWillUnmount() {
+    // disconnect the socket connection
   }
 }
 

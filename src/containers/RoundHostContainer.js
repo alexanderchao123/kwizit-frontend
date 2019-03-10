@@ -62,7 +62,7 @@ class RoundHostContainer extends Component {
   componentDidMount() {
     let roundPin = this.props.match.params.pin
     this.authenticateRound(roundPin)
-    .then(this.createSocket(roundPin))
+    .then(() => this.createSocket(roundPin))
   }
 
   componentWillUnmount() {
