@@ -30,11 +30,13 @@ class RoundPlayerContainer extends Component {
           case "Successfully Connected":
             console.log(response.type)
             break
+          case "Start Round":
+            this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceblock`)
+            break
           default:
             console.log("Connected")
         }
-      },
-      speak: function() {}
+      }
     })
     this.setState({
       cable: cable,

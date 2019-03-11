@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class RoundChoiceBlock extends Component {
   render() {
     return(
-      <div>Choice Block</div>
+      <h1>Choice Block</h1>
     )
   }
 }

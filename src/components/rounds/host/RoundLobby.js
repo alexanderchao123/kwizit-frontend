@@ -1,17 +1,25 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { authenticateRound } from '../../../store/actions/RoundActions'
+import { authenticateRound, startRound } from '../../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
+    this.props.startRound(this.props.cable, this.props.socket)
     this.props.history.push(`/rounds/host/${this.props.round.pin}/questionblock`)
   }
 
   render() {
+    let players = this.props.players.map((player, index) => {
+      return <li key={index}>{player}</li>
+    })
+
     return(
       <div>
         <h1>Round Lobby</h1>
         <h4>GAME PIN: {this.props.round.pin}</h4>
+        <ul>
+          {players}
+        </ul>
         <button type="button" onClick={this.clickHandler}>Start Round</button>
       </div>
     )
@@ -26,13 +34,15 @@ class RoundLobby extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    round: state.roundInfo.round
+    round: state.roundInfo.round,
+    players: state.roundInfo.players
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token))
+    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token)),
+    startRound: (cable, socket) => dispatch(startRound(cable, socket))
   }
 }
 

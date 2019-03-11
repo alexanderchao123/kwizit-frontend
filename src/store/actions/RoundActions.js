@@ -23,7 +23,7 @@ export const decrementTime = () => {
 export const addPlayer = (player) => {
   return {
     type: "ADD_PLAYER",
-    payload: player
+    payload: player.first_name
   }
 }
 
@@ -79,5 +79,11 @@ export const getCurrentQuestion = (roundPin, token) => {
       dispatch(addQuestion(json))
       return json
     })
+  }
+}
+
+export const startRound = (cable, socket) => {
+  return (dispatch) => {
+    socket.startRound()
   }
 }

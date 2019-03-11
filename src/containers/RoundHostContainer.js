@@ -30,14 +30,16 @@ class RoundHostContainer extends Component {
       disconnect: function() {},
       received: (response) => {
         switch (response.type) {
-          case "Successfully Connected":
+          case "Player Connected":
             this.props.addPlayer(response.data)
             break
           default:
             console.log("Connected")
         }
       },
-      speak: function() {}
+      startRound: function() {
+        this.perform("start_round")
+      }
     })
     this.setState({
       cable: cable,
@@ -49,7 +51,7 @@ class RoundHostContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props}/>}/>
+          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} cable={this.state.cable} socket={this.state.socket}/>}/>
           <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props}/>}/>
           <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
           <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
