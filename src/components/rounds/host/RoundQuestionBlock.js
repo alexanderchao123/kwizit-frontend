@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurrentQuestion, decrementTime } from '../../../store/actions/RoundActions'
+import { getCurrentQuestion, decrementTime, renderPlayerResult } from '../../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
@@ -17,7 +17,9 @@ class RoundQuestionBlock extends Component {
 
   startCountdownTimer = () => {
     let intervalId = setInterval(() => {
-      if (this.props.question.time === 0 && !this.props.lastQuestion) this.pushQuestionResultRoute()
+      if (this.props.question.time === 0 && !this.props.lastQuestion) {
+        this.pushQuestionResultRoute()
+      }
       this.props.decrementTime()
     }, 1000)
     this.setState({intervalId: intervalId})
@@ -28,6 +30,7 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
+    this.props.renderPlayerResult(this.props.socket)
     this.pushQuestionResultRoute()
   }
 
@@ -64,7 +67,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token)),
-    decrementTime: () => dispatch(decrementTime())
+    decrementTime: () => dispatch(decrementTime()),
+    renderPlayerResult: (socket) => dispatch(renderPlayerResult(socket))
   }
 }
 

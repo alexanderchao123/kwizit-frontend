@@ -82,8 +82,16 @@ export const getCurrentQuestion = (roundPin, token) => {
   }
 }
 
+
+/*-------- Thunk Creators For ActionCable --------*/
 export const startRound = (cable, socket) => {
   return (dispatch) => {
     socket.startRound()
+  }
+}
+
+export const renderPlayerResult = (socket) => {
+  return (dispatch) => {
+    socket.renderPlayerResult()
   }
 }

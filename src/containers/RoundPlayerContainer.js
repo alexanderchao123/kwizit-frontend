@@ -34,7 +34,8 @@ class RoundPlayerContainer extends Component {
           case "Start Round":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceblock`)
             break
-          case "Show Player Result":
+          case "Render Player Result":
+            console.log(response.type)
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceresult`)
             break
           default:
