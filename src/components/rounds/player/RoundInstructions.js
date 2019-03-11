@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class RoundInstructions extends Component {
   render() {
     return(
-      <h1>Round Instructions</h1>
+      <div>
+        <h1>You're in!</h1>
+        <p>See your name onscreen?</p>
+      </div>
     )
   }
 }
