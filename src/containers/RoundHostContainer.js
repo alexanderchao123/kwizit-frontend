@@ -37,8 +37,8 @@ class RoundHostContainer extends Component {
             console.log("Connected")
         }
       },
-      startRound: function() {
-        this.perform("start_round")
+      renderChoiceBlock: function() {
+        this.perform("render_choice_block")
       },
       renderChoiceResult: function() {
         this.perform("render_choice_result")
@@ -54,10 +54,10 @@ class RoundHostContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} cable={this.state.cable} socket={this.state.socket}/>}/>
-          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} cable={this.state.cable} socket={this.state.socket}/>}/>}/>
+          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} socket={this.state.socket}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} socket={this.state.socket}/>}/>}/>
           <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
-          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
+          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} socket={this.state.socket}/>}/>
           <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
         </Switch>
       </Fragment>

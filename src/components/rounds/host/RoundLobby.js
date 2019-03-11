@@ -1,10 +1,10 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { authenticateRound, startRound } from '../../../store/actions/RoundActions'
+import { authenticateRound, renderChoiceBlock } from '../../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    this.props.startRound(this.props.cable, this.props.socket)
+    this.props.renderChoiceBlock(this.props.socket)
     this.props.history.push(`/rounds/host/${this.props.round.pin}/questionblock`)
   }
 
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token)),
-    startRound: (cable, socket) => dispatch(startRound(cable, socket))
+    renderChoiceBlock: (socket) => dispatch(renderChoiceBlock(socket))
   }
 }
 

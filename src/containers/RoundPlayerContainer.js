@@ -31,7 +31,7 @@ class RoundPlayerContainer extends Component {
           case "Successfully Connected":
             console.log(response.type)
             break
-          case "Start Round":
+          case "Render Choice Block":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceblock`)
             break
           case "Render Choice Result":

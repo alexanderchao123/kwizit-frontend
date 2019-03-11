@@ -84,9 +84,9 @@ export const getCurrentQuestion = (roundPin, token) => {
 
 
 /*-------- Thunk Creators For ActionCable --------*/
-export const startRound = (cable, socket) => {
+export const renderChoiceBlock = (socket) => {
   return (dispatch) => {
-    socket.startRound()
+    socket.renderChoiceBlock()
   }
 }
 
