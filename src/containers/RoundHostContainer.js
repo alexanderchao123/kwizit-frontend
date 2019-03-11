@@ -52,7 +52,7 @@ class RoundHostContainer extends Component {
       <Fragment>
         <Switch>
           <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} cable={this.state.cable} socket={this.state.socket}/>}/>
-          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} cable={this.state.cable} socket={this.state.socket}/>}/>}/>
           <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
           <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props}/>}/>
           <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
