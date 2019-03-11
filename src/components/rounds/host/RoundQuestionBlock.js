@@ -18,6 +18,7 @@ class RoundQuestionBlock extends Component {
   startCountdownTimer = () => {
     let intervalId = setInterval(() => {
       if (this.props.question.time === 0 && !this.props.lastQuestion) {
+        this.props.renderPlayerResult(this.props.socket)
         this.pushQuestionResultRoute()
       }
       this.props.decrementTime()
