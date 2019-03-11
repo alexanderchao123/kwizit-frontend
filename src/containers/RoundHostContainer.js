@@ -40,8 +40,8 @@ class RoundHostContainer extends Component {
       startRound: function() {
         this.perform("start_round")
       },
-      renderPlayerResult: function() {
-        this.perform("render_player_result")
+      renderChoiceResult: function() {
+        this.perform("render_choice_result")
       }
     })
     this.setState({

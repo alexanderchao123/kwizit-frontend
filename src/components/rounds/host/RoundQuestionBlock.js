@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurrentQuestion, decrementTime, renderPlayerResult } from '../../../store/actions/RoundActions'
+import { getCurrentQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    this.props.renderPlayerResult(this.props.socket)
+    this.props.renderChoiceResult(this.props.socket)
     this.pushQuestionResultRoute()
   }
 
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
-    renderPlayerResult: (socket) => dispatch(renderPlayerResult(socket))
+    renderChoiceResult: (socket) => dispatch(renderChoiceResult(socket))
   }
 }
 

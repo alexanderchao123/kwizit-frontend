@@ -90,8 +90,8 @@ export const startRound = (cable, socket) => {
   }
 }
 
-export const renderPlayerResult = (socket) => {
+export const renderChoiceResult = (socket) => {
   return (dispatch) => {
-    socket.renderPlayerResult()
+    socket.renderChoiceResult()
   }
 }
