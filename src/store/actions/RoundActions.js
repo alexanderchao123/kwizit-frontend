@@ -95,3 +95,9 @@ export const renderChoiceResult = (socket) => {
     socket.renderChoiceResult()
   }
 }
+
+export const submitChoice = (socket, choice) => {
+  return (dispatch) => {
+    socket.submitChoice(choice)
+  }
+}

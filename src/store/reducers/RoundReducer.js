@@ -4,7 +4,13 @@ let initialState = {
   question: {
     title: "",
     difficulty: "",
-    time: 0
+    time: 0,
+    choices: [
+      {answer: "", correct: ""},
+      {answer: "", correct: ""},
+      {answer: "", correct: ""},
+      {answer: "", correct: ""}
+    ]
   },
   lastQuestion: false
 }

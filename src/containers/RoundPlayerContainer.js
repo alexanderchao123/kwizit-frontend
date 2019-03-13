@@ -40,6 +40,9 @@ class RoundPlayerContainer extends Component {
           default:
             console.log("Connected")
         }
+      },
+      submitChoice: function(choice) {
+        this.perform("submit_choice", choice)
       }
     })
     this.setState({

@@ -40,7 +40,11 @@ class RoundQuestionBlock extends Component {
       <div>
         <h1>QuestionBlock</h1>
         <h4>{this.props.question.title}</h4>
-        <div>{this.props.question.time}</div>
+        <h4>{this.props.question.time}</h4>
+        <div>Choice A: {this.props.question.choices[0].answer}</div>
+        <div>Choice B: {this.props.question.choices[1].answer}</div>
+        <div>Choice C: {this.props.question.choices[2].answer}</div>
+        <div>Choice D: {this.props.question.choices[3].answer}</div>
         <button type="button" onClick={this.clickHandler}>Skip</button>
       </div>
     )
