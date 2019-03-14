@@ -72,6 +72,7 @@ class RoundHostContainer extends Component {
 
   componentWillUnmount() {
     // disconnect the socket connection
+    // clear the  redux and local state
   }
 }
 
