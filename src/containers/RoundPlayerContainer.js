@@ -23,7 +23,7 @@ class RoundPlayerContainer extends Component {
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
-    let socket = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin}, {
+    let socket = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: function() {},
       disconnect: function() {},
       received: (response) => {
@@ -74,7 +74,8 @@ class RoundPlayerContainer extends Component {
   }
 
   componentWillUnmount() {
-    // disconnect the socket connection
+    this.state.socket.consumer.disconnect()
+    // clear the  redux and local state
   }
 }
 
