@@ -28,7 +28,7 @@ class RoundPlayerContainer extends Component {
       disconnect: function() {},
       received: (response) => {
         switch (response.type) {
-          case "Successfully Connected":
+          case "Player Connected":
             console.log(response.type)
             break
           case "Render Choice Block":
@@ -42,9 +42,6 @@ class RoundPlayerContainer extends Component {
             break
           case "Render Ranking":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/ranking`)
-            break
-          default:
-            console.log("Connected")
         }
       },
       submitChoice: function(choice) {

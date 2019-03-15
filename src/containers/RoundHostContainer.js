@@ -30,11 +30,11 @@ class RoundHostContainer extends Component {
       disconnect: function() {},
       received: (response) => {
         switch (response.type) {
+          case "Host Connected":
+            console.log(response.type)
+            break
           case "Player Connected":
             this.props.addPlayer(response.data)
-            break
-          default:
-            console.log("Connected")
         }
       },
       renderChoiceBlock: function() {

@@ -4,8 +4,6 @@ import { submitChoice } from '../../../store/actions/RoundActions'
 
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
-    // post fetch request the clicked value to the decisions controller
-    // based on the returned response.type, it will either direct the user to the ChoiceSent or ChoiceResult
     let choice = event.target.value
     this.props.submitChoice(this.props.socket, choice)
   }
