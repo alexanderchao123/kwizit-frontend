@@ -18,7 +18,7 @@ class RoundQuestionBlock extends Component {
   startCountdownTimer = () => {
     let intervalId = setInterval(() => {
       if (this.props.question.time === 0 && !this.props.lastQuestion) {
-        this.props.renderChoiceResult(this.props.socket)
+        this.props.renderChoiceResult(this.props.subscription)
         this.pushQuestionResultRoute()
       }
       this.props.decrementTime()
@@ -31,7 +31,7 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    this.props.renderChoiceResult(this.props.socket)
+    this.props.renderChoiceResult(this.props.subscription)
     this.pushQuestionResultRoute()
   }
 
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
-    renderChoiceResult: (socket) => dispatch(renderChoiceResult(socket))
+    renderChoiceResult: (subscription) => dispatch(renderChoiceResult(subscription))
   }
 }
 

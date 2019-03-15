@@ -84,20 +84,20 @@ export const getCurrentQuestion = (roundPin, token) => {
 
 
 /*-------- Thunk Creators For ActionCable --------*/
-export const renderChoiceBlock = (socket) => {
+export const renderChoiceBlock = (subscription) => {
   return (dispatch) => {
-    socket.renderChoiceBlock()
+    subscription.renderChoiceBlock()
   }
 }
 
-export const renderChoiceResult = (socket) => {
+export const renderChoiceResult = (subscription) => {
   return (dispatch) => {
-    socket.renderChoiceResult()
+    subscription.renderChoiceResult()
   }
 }
 
-export const submitChoice = (socket, choice) => {
+export const submitChoice = (subscription, choice) => {
   return (dispatch) => {
-    socket.submitChoice(choice)
+    subscription.submitChoice(choice)
   }
 }

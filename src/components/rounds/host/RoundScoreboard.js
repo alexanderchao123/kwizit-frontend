@@ -5,7 +5,7 @@ import { renderChoiceBlock } from '../../../store/actions/RoundActions'
 class RoundScoreboard extends Component {
   clickHandler = (event) => {
     let roundPin = this.props.match.params.pin
-    this.props.renderChoiceBlock(this.props.socket)
+    this.props.renderChoiceBlock(this.props.subscription)
     this.props.history.push(`/rounds/host/${roundPin}/questionblock`)
   }
 
@@ -21,7 +21,7 @@ class RoundScoreboard extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    renderChoiceBlock: (socket) => dispatch(renderChoiceBlock(socket))
+    renderChoiceBlock: (subscription) => dispatch(renderChoiceBlock(subscription))
   }
 }
 

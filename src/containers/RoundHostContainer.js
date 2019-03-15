@@ -14,7 +14,7 @@ class RoundHostContainer extends Component {
     super()
     this.state = {
       cable: {},
-      socket: {}
+      subscription: {}
     }
   }
 
@@ -25,7 +25,7 @@ class RoundHostContainer extends Component {
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
-    let socket = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
+    let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: function() {},
       disconnect: function() {},
       received: (response) => {
@@ -46,7 +46,7 @@ class RoundHostContainer extends Component {
     })
     this.setState({
       cable: cable,
-      socket: socket
+      subscription: subscription
     })
   }
 
@@ -54,10 +54,10 @@ class RoundHostContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} socket={this.state.socket}/>}/>
-          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} socket={this.state.socket}/>}/>}/>
+          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} subscription={this.state.subscription}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} subscription={this.state.subscription}/>}/>}/>
           <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
-          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} socket={this.state.socket}/>}/>
+          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} subscription={this.state.subscription}/>}/>
           <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
         </Switch>
       </Fragment>
@@ -71,7 +71,7 @@ class RoundHostContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.state.socket.consumer.disconnect()
+    this.state.subscription.consumer.disconnect()
     // clear the  redux and local state
   }
 }

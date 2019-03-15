@@ -4,7 +4,7 @@ import { authenticateRound, renderChoiceBlock } from '../../../store/actions/Rou
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
-    this.props.renderChoiceBlock(this.props.socket)
+    this.props.renderChoiceBlock(this.props.subscription)
     this.props.history.push(`/rounds/host/${this.props.round.pin}/questionblock`)
   }
 
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token)),
-    renderChoiceBlock: (socket) => dispatch(renderChoiceBlock(socket))
+    renderChoiceBlock: (subscription) => dispatch(renderChoiceBlock(subscription))
   }
 }
 

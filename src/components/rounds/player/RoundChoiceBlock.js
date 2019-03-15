@@ -5,7 +5,7 @@ import { submitChoice } from '../../../store/actions/RoundActions'
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
     let choice = event.target.value
-    this.props.submitChoice(this.props.socket, choice)
+    this.props.submitChoice(this.props.subscription, choice)
   }
 
   render() {
@@ -23,7 +23,7 @@ class RoundChoiceBlock extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitChoice: (socket, choice) => dispatch(submitChoice(socket, choice))
+    submitChoice: (subscription, choice) => dispatch(submitChoice(subscription, choice))
   }
 }
 

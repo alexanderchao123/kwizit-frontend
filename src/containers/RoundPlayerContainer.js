@@ -12,7 +12,7 @@ class RoundPlayerContainer extends Component {
     super()
     this.state = {
       cable: {},
-      socket: {}
+      subscription: {}
     }
   }
 
@@ -23,7 +23,7 @@ class RoundPlayerContainer extends Component {
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
-    let socket = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
+    let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: function() {},
       disconnect: function() {},
       received: (response) => {
@@ -50,7 +50,7 @@ class RoundPlayerContainer extends Component {
     })
     this.setState({
       cable: cable,
-      socket: socket
+      subscription: subscription
     })
   }
 
@@ -59,7 +59,7 @@ class RoundPlayerContainer extends Component {
       <Fragment>
         <Switch>
           <Route path="/rounds/player/:pin/instructions" render={(props) => <RoundInstructions {...props}/>}/>
-          <Route path="/rounds/player/:pin/choiceblock" render={(props) => <RoundChoiceBlock {...props} socket={this.state.socket}/>}/>
+          <Route path="/rounds/player/:pin/choiceblock" render={(props) => <RoundChoiceBlock {...props} subscription={this.state.subscription}/>}/>
           <Route path="/rounds/player/:pin/choiceresult" render={(props) => <RoundChoiceResult {...props}/>}/>
           <Route path="/rounds/player/:pin/ranking" render={(props) => <RoundRanking {...props}/>}/>
         </Switch>
@@ -74,7 +74,7 @@ class RoundPlayerContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.state.socket.consumer.disconnect()
+    this.state.subscription.consumer.disconnect()
     // clear the  redux and local state
   }
 }
