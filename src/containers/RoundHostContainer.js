@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionCable from 'actioncable'
-import { addPlayer } from '../store/actions/RoundActions'
+import { addPlayer, getPlayers } from '../store/actions/RoundActions'
 import RoundLobby from '../components/rounds/host/RoundLobby'
 import RoundQuestionBlock from '../components/rounds/host/RoundQuestionBlock'
 import RoundQuestionResult from '../components/rounds/host/RoundQuestionResult'
@@ -66,8 +66,12 @@ class RoundHostContainer extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
+    let token = localStorage.getItem("token")
     this.authenticateRound(roundPin)
-    .then(() => this.createSocket(roundPin))
+    .then(() => {
+      this.createSocket(roundPin)
+      this.props.getPlayers(roundPin, token)
+    })
   }
 
   componentWillUnmount() {
@@ -84,7 +88,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPlayer: (player) => dispatch(addPlayer(player))
+    addPlayer: (player) => dispatch(addPlayer(player)),
+    getPlayers: (roundPin, token) => dispatch(getPlayers(roundPin, token))
   }
 }
 

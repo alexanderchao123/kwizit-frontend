@@ -10,7 +10,7 @@ class RoundLobby extends Component {
 
   render() {
     let players = this.props.players.map((player, index) => {
-      return <li key={index}>{player}</li>
+      return <li key={index}>{player.first_name}</li>
     })
 
     return(

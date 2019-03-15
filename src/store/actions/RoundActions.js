@@ -23,7 +23,14 @@ export const decrementTime = () => {
 export const addPlayer = (player) => {
   return {
     type: "ADD_PLAYER",
-    payload: player.first_name
+    payload: player
+  }
+}
+
+export const addPlayers = (players) => {
+  return {
+    type: "ADD_PLAYERS",
+    payload: players
   }
 }
 
@@ -60,6 +67,27 @@ export const authenticateRound = (roundPin, token) => {
     .then(res => res.json())
     .then(json => {
       dispatch(addRound(json.round))
+    })
+  }
+}
+
+export const getPlayers = (roundPin, token) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/admissions`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      let players = json.admissions.map((admission) => {
+        return admission.user
+      })
+      debugger
+      dispatch(addPlayers(players))
     })
   }
 }

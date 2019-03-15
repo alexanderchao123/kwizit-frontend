@@ -21,6 +21,8 @@ export default function roundReducer(state = initialState, action) {
         return {...state, round: action.payload}
       case "ADD_PLAYER":
         return {...state, players: [...state.players, action.payload]}
+      case "ADD_PLAYERS":
+        return {...state, players: [...action.payload]}
       case "ADD_QUESTION":
         return {...state, question: action.payload.question, lastQuestion: action.payload.last_question}
       case "DECREMENT_TIME":
