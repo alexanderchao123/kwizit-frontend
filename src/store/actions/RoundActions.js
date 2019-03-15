@@ -86,7 +86,6 @@ export const getPlayers = (roundPin, token) => {
       let players = json.admissions.map((admission) => {
         return admission.user
       })
-      debugger
       dispatch(addPlayers(players))
     })
   }

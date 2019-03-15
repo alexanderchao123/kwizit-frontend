@@ -24,8 +24,8 @@ class RoundPlayerContainer extends Component {
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
-      connected: function() {},
-      disconnect: function() {},
+      connected: () => {},
+      disconnect: () => {},
       received: (response) => {
         switch (response.type) {
           case "Player Connected":

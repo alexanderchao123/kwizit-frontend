@@ -26,7 +26,11 @@ class RoundHostContainer extends Component {
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
-      connected: function() {},
+      connected: () => {
+        let roundPin = this.props.match.params.pin
+        let token = localStorage.getItem("token")
+        this.props.getPlayers(roundPin, token)
+      },
       disconnect: function() {},
       received: (response) => {
         switch (response.type) {
@@ -66,12 +70,8 @@ class RoundHostContainer extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
     this.authenticateRound(roundPin)
-    .then(() => {
-      this.createSocket(roundPin)
-      this.props.getPlayers(roundPin, token)
-    })
+    .then(() => this.createSocket(roundPin))
   }
 
   componentWillUnmount() {

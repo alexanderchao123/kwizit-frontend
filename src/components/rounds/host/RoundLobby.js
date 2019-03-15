@@ -25,11 +25,7 @@ class RoundLobby extends Component {
     )
   }
 
-  componentDidMount() {
-    let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    this.props.authenticateRound(roundPin, token)
-  }
+  componentDidMount() {}
 }
 
 const mapStateToProps = (state) => {
