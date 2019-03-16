@@ -97,7 +97,7 @@ class QuizNew extends Component {
       body: JSON.stringify({quiz: this.state})
     })
     .then(res => res.json())
-    .then(json =>this.props.history.push(`/quizzes/${json.quiz.id}/`))
+    .then(json => this.props.history.push(`/quizzes/${json.quiz.id}/`))
   }
 
   render() {

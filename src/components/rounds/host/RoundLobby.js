@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { authenticateRound, renderChoiceBlock } from '../../../store/actions/RoundActions'
+import { renderChoiceBlock } from '../../../store/actions/RoundActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
@@ -37,7 +37,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token)),
     renderChoiceBlock: (subscription) => dispatch(renderChoiceBlock(subscription))
   }
 }

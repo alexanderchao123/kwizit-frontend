@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionCable from 'actioncable'
-import { addPlayer, getPlayers } from '../store/actions/RoundActions'
+import { authenticateRound, addPlayer, getPlayers } from '../store/actions/RoundActions'
 import RoundLobby from '../components/rounds/host/RoundLobby'
 import RoundQuestionBlock from '../components/rounds/host/RoundQuestionBlock'
 import RoundQuestionResult from '../components/rounds/host/RoundQuestionResult'
@@ -16,11 +16,6 @@ class RoundHostContainer extends Component {
       cable: {},
       subscription: {}
     }
-  }
-
-  authenticateRound = (roundPin) => {
-    return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
-    .then(res => res.json())
   }
 
   createSocket = (roundPin) => {
@@ -70,7 +65,8 @@ class RoundHostContainer extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
-    this.authenticateRound(roundPin)
+    let token = localStorage.getItem("token")
+    this.props.authenticateRound(roundPin, token)
     .then(() => this.createSocket(roundPin))
   }
 
@@ -88,6 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token)) ,
     addPlayer: (player) => dispatch(addPlayer(player)),
     getPlayers: (roundPin, token) => dispatch(getPlayers(roundPin, token))
   }
