@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionCable from 'actioncable'
+import { authenticateRound } from '../store/actions/RoundActions'
 import RoundInstructions from '../components/rounds/player/RoundInstructions'
 import RoundChoiceBlock from '../components/rounds/player/RoundChoiceBlock'
 import RoundChoiceResult from '../components/rounds/player/RoundChoiceResult'
@@ -16,10 +17,10 @@ class RoundPlayerContainer extends Component {
     }
   }
 
-  authenticateRound = (roundPin) => {
-    return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
-    .then(res => res.json())
-  }
+  // authenticateRound = (roundPin) => {
+  //   return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
+  //   .then(res => res.json())
+  // }
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
@@ -28,6 +29,9 @@ class RoundPlayerContainer extends Component {
       disconnect: () => {},
       received: (response) => {
         switch (response.type) {
+          case "Host Connected":
+            console.log(response.type)
+            break
           case "Player Connected":
             console.log(response.type)
             break
@@ -42,6 +46,9 @@ class RoundPlayerContainer extends Component {
             break
           case "Render Ranking":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/ranking`)
+            break
+          default:
+            console.log("A message was sent")
         }
       },
       submitChoice: function(choice) {
@@ -69,7 +76,8 @@ class RoundPlayerContainer extends Component {
 
   componentDidMount() {
     let roundPin = this.props.match.params.pin
-    this.authenticateRound(roundPin)
+    let token = localStorage.getItem("token")
+    this.props.authenticateRound(roundPin, token)
     .then(() => this.createSocket(roundPin))
   }
 
@@ -79,4 +87,10 @@ class RoundPlayerContainer extends Component {
   }
 }
 
-export default RoundPlayerContainer
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(RoundPlayerContainer)

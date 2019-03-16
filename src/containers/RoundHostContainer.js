@@ -34,6 +34,9 @@ class RoundHostContainer extends Component {
             break
           case "Player Connected":
             this.props.addPlayer(response.data)
+            break
+          default:
+            console.log("A message was sent")
         }
       },
       renderChoiceBlock: function() {
