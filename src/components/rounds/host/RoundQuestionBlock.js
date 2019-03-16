@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurrentQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
+import { createRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class RoundQuestionBlock extends Component {
   componentDidMount() {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
-    this.props.getCurrentQuestion(roundPin, token)
+    this.props.createRoundQuestion(roundPin, token)
     this.startCountdownTimer()
   }
 
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCurrentQuestion: (roundPin, token) => dispatch(getCurrentQuestion(roundPin, token)),
+    createRoundQuestion: (roundPin, token) => dispatch(createRoundQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
     renderChoiceResult: (subscription) => dispatch(renderChoiceResult(subscription))
   }

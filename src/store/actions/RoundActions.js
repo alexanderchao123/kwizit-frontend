@@ -91,10 +91,10 @@ export const getPlayers = (roundPin, token) => {
   }
 }
 
-export const getCurrentQuestion = (roundPin, token) => {
+export const createRoundQuestion = (roundPin, token) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/current_question`, {
-      method: "GET",
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/round_questions`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accepts: "application/json",
