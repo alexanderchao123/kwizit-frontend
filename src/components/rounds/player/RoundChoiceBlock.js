@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { submitChoice } from '../../../store/actions/RoundActions'
+import {  } from '../../../store/actions/RoundActions'
 
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
     let choice = event.target.value
-    this.props.submitChoice(this.props.subscription, choice)
   }
 
   render() {
@@ -23,7 +22,7 @@ class RoundChoiceBlock extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitChoice: (subscription, choice) => dispatch(submitChoice(subscription, choice))
+
   }
 }
 

@@ -45,9 +45,6 @@ class RoundPlayerContainer extends Component {
           default:
             console.log("A message was sent")
         }
-      },
-      submitChoice: function(choice) {
-        this.perform("submit_choice", {choice: choice})
       }
     })
     this.setState({

@@ -8,7 +8,7 @@ class QuizShow extends Component {
     let quizId = this.props.match.params.quizId
     let token = localStorage.getItem("token")
     this.props.createRound(quizId, token)
-    .then(json => this.props.history.push(`/rounds/host/${json.round.pin}/lobby`))
+    .then(() => this.props.history.push(`/rounds/host/${this.props.round.pin}/lobby`))
   }
 
   render() {
@@ -33,7 +33,8 @@ class QuizShow extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    quiz: state.quizInfo.quiz
+    quiz: state.quizInfo.quiz,
+    round: state.roundInfo.round
   }
 }
 

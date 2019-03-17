@@ -47,10 +47,7 @@ export const createRound = (quizId, token) => {
       }
     })
     .then(res => res.json())
-    .then(json => {
-      dispatch(addRound(json.round))
-      return json
-    })
+    .then(json => dispatch(addRound(json.round)))
   }
 }
 
@@ -138,11 +135,5 @@ export const renderChoiceResult = (subscription) => {
 export const renderRanking = (subscription) => {
   return (dispatch) => {
     subscription.renderRanking()
-  }
-}
-
-export const submitChoice = (subscription, choice) => {
-  return (dispatch) => {
-    subscription.submitChoice(choice)
   }
 }
