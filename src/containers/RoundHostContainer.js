@@ -44,6 +44,9 @@ class RoundHostContainer extends Component {
       },
       renderChoiceResult: function() {
         this.perform("render_choice_result")
+      },
+      renderRanking: function() {
+        this.perform("render_ranking")
       }
     })
     this.setState({
@@ -57,8 +60,8 @@ class RoundHostContainer extends Component {
       <Fragment>
         <Switch>
           <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} subscription={this.state.subscription}/>}/>
-          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} subscription={this.state.subscription}/>}/>}/>
-          <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} subscription={this.state.subscription}/>}/>
+          <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props} hey="hey" subscription={this.state.subscription}/>}/>
           <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} subscription={this.state.subscription}/>}/>
           <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
         </Switch>
@@ -75,7 +78,7 @@ class RoundHostContainer extends Component {
 
   componentWillUnmount() {
     this.state.subscription.consumer.disconnect()
-    // clear the  redux and local state
+
   }
 }
 

@@ -17,11 +17,6 @@ class RoundPlayerContainer extends Component {
     }
   }
 
-  // authenticateRound = (roundPin) => {
-  //   return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`)
-  //   .then(res => res.json())
-  // }
-
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
@@ -83,7 +78,6 @@ class RoundPlayerContainer extends Component {
 
   componentWillUnmount() {
     this.state.subscription.consumer.disconnect()
-    // clear the  redux and local state
   }
 }
 

@@ -1,16 +1,20 @@
 let initialState = {
   round: {},
   players: [],
-  question: {
-    title: "",
-    difficulty: "",
-    time: 0,
-    choices: [
-      {answer: "", correct: ""},
-      {answer: "", correct: ""},
-      {answer: "", correct: ""},
-      {answer: "", correct: ""}
-    ]
+  round_question: {
+    id: "",
+    active: "",
+    question: {
+      title: "",
+      difficulty: "",
+      time: 0,
+      choices: [
+        {answer: "", correct: ""},
+        {answer: "", correct: ""},
+        {answer: "", correct: ""},
+        {answer: "", correct: ""}
+      ]
+    }
   },
   lastQuestion: false
 }
@@ -23,10 +27,11 @@ export default function roundReducer(state = initialState, action) {
         return {...state, players: [...state.players, action.payload]}
       case "ADD_PLAYERS":
         return {...state, players: [...action.payload]}
-      case "ADD_QUESTION":
-        return {...state, question: action.payload.question, lastQuestion: action.payload.last_question}
+        case "ADD_ROUND_QUESTION":
+        return {...state, round_question: {...action.payload}}
       case "DECREMENT_TIME":
-        return {...state, question: {...state.question, time: (state.question.time - action.payload)}}
+        let question = {...state.round_question.question, time: (state.round_question.question.time - action.payload)}
+        return {...state, round_question: {...state.round_question, question: question}}
       default:
         return state;
     }

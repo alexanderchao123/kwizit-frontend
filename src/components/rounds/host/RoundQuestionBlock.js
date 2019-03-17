@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
+import { createRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
@@ -10,16 +10,20 @@ class RoundQuestionBlock extends Component {
     }
   }
 
-  pushQuestionResultRoute = () => {
+  transitionToQuestionResult = () => {
     let roundPin = this.props.match.params.pin
     this.props.history.push(`/rounds/host/${roundPin}/questionresult`)
+    this.props.renderChoiceResult(this.props.subscription)
   }
 
   startCountdownTimer = () => {
     let intervalId = setInterval(() => {
-      if (this.props.question.time === 0 && !this.props.lastQuestion) {
-        this.props.renderChoiceResult(this.props.subscription)
-        this.pushQuestionResultRoute()
+      if (this.props.question.time === 0) {
+        let roundPin = this.props.match.params.pin
+        let roundQuestionId = this.props.round_question.id
+        let token = localStorage.getItem("token")
+        this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
+        .then(json => this.transitionToQuestionResult())
       }
       this.props.decrementTime()
     }, 1000)
@@ -31,8 +35,11 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    this.props.renderChoiceResult(this.props.subscription)
-    this.pushQuestionResultRoute()
+    let roundPin = this.props.match.params.pin
+    let roundQuestionId = this.props.round_question.id
+    let token = localStorage.getItem("token")
+    this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
+    .then(json => this.transitionToQuestionResult())
   }
 
   render() {
@@ -64,14 +71,15 @@ class RoundQuestionBlock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    question: state.roundInfo.question,
-    lastQuestion: state.roundInfo.lastQuestion
+    round_question: state.roundInfo.round_question,
+    question: state.roundInfo.round_question.question
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createRoundQuestion: (roundPin, token) => dispatch(createRoundQuestion(roundPin, token)),
+    updateRoundQuestion: (roundPin, token) => dispatch(updateRoundQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
     renderChoiceResult: (subscription) => dispatch(renderChoiceResult(subscription))
   }

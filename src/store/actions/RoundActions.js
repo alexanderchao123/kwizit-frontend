@@ -6,9 +6,9 @@ export const addRound = (round) => {
   }
 }
 
-export const addQuestion = (json) => {
+export const addRoundQuestion = (json) => {
   return {
-    type: "ADD_QUESTION",
+    type: "ADD_ROUND_QUESTION",
     payload: json
   }
 }
@@ -102,10 +102,22 @@ export const createRoundQuestion = (roundPin, token) => {
       }
     })
     .then(res => res.json())
-    .then(json => {
-      dispatch(addQuestion(json))
-      return json
+    .then(json => dispatch(addRoundQuestion(json.round_question)))
+  }
+}
+
+export const updateRoundQuestion = (roundPin, roundQuestionId, token) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/round_questions/${roundQuestionId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      }
     })
+    .then(res => res.json())
+    .then(json => json)
   }
 }
 
@@ -120,6 +132,12 @@ export const renderChoiceBlock = (subscription) => {
 export const renderChoiceResult = (subscription) => {
   return (dispatch) => {
     subscription.renderChoiceResult()
+  }
+}
+
+export const renderRanking = (subscription) => {
+  return (dispatch) => {
+    subscription.renderRanking()
   }
 }
 
