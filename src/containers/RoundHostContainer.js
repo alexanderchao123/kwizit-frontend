@@ -35,6 +35,9 @@ class RoundHostContainer extends Component {
           case "Player Connected":
             this.props.addPlayer(response.data)
             break
+          case "Render Question Result":
+            this.props.history.push(`/rounds/host/${this.props.match.params.pin}/questionresult`)
+            break
           default:
             console.log("A message was sent")
         }

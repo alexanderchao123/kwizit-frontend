@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import {  } from '../../../store/actions/RoundActions'
+import { createDecision } from '../../../store/actions/RoundActions'
 
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
     let choice = event.target.value
+    let roundPin = this.props.match.params.pin
+    let token = localStorage.getItem("token")
+    this.props.createDecision(choice, roundPin, token)
   }
 
   render() {
@@ -22,7 +25,7 @@ class RoundChoiceBlock extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    createDecision: (choice, roundPin, token) => dispatch(createDecision(choice, roundPin, token))
   }
 }
 

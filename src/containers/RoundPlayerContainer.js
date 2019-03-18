@@ -5,6 +5,7 @@ import ActionCable from 'actioncable'
 import { authenticateRound } from '../store/actions/RoundActions'
 import RoundInstructions from '../components/rounds/player/RoundInstructions'
 import RoundChoiceBlock from '../components/rounds/player/RoundChoiceBlock'
+import RoundChoiceSent from '../components/rounds/player/RoundChoiceSent'
 import RoundChoiceResult from '../components/rounds/player/RoundChoiceResult'
 import RoundRanking from '../components/rounds/player/RoundRanking'
 
@@ -59,6 +60,7 @@ class RoundPlayerContainer extends Component {
         <Switch>
           <Route path="/rounds/player/:pin/instructions" render={(props) => <RoundInstructions {...props}/>}/>
           <Route path="/rounds/player/:pin/choiceblock" render={(props) => <RoundChoiceBlock {...props} subscription={this.state.subscription}/>}/>
+          <Route path="/rounds/player/:pin/choicesent" render={(props) => <RoundChoiceSent {...props}/>}/>
           <Route path="/rounds/player/:pin/choiceresult" render={(props) => <RoundChoiceResult {...props}/>}/>
           <Route path="/rounds/player/:pin/ranking" render={(props) => <RoundRanking {...props}/>}/>
         </Switch>
