@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "globals": { "fetch": false },
+  "root": true,
+  "rules": {
+      "eqeqeq": ["warn", "always"],
+      "jsx-quotes": ["warn", "prefer-double"],
+      "space-infix-ops": 1,
+      "arrow-body-style": 0,
+      "no-unused-vars": 1,
+      "comma-spacing": 1,
+      "object-curly-spacing": ["warn", "always"],
+      "space-before-blocks": 1,
+      "react/require-extension": 0,
+      "react/prop-types": 0,
+      "react/jsx-no-bind": 0,
+      "react/display-name": 0,
+      "import/no-named-as-default-member": 0,
+      "keyword-spacing": 0,
+      "no-debugger": 0,
+      "semi": ["warn", "always"],
+      "array-bracket-spacing": ["warn", "always"],
+      "spaced-comment": ["warn", "always", { "markers": ["/"] }],
+      "quotes": ["warn", "single", {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }],
+      "no-multiple-empty-lines": 1,
+      "padding-line-between-statements": [
+        1,
+        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
+        { "blankLine": "any",    "prev": ["const", "let", "var"], "next": ["const", "let", "var"]},
+        { "blankLine": "always", "prev": "*", "next": "return" }
+      ],
+      "jsx-a11y/anchor-is-valid": 1,
+      "jsx-a11y/click-events-have-key-events": 1,
+      "jsx-a11y/no-static-element-interactions": 1,
+      "jsx-a11y/mouse-events-have-key-events": 1,
+      "jsx-a11y/label-has-associated-control": 1,
+      "comma-dangle": ["warn", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline"
+      }]
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y"
+  ]
+}
