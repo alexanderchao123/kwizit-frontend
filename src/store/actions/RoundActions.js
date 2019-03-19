@@ -130,7 +130,7 @@ export const createDecision = (choice, roundPin, token) => {
       body: JSON.stringify({choice: choice})
     })
     .then(res => res.json())
-    .then(json => {})
+    .then(json => {console.log(json.decision)})
   }
 }
 

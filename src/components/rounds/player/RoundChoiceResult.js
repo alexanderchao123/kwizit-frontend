@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import RoundChoiceCorrect from './RoundChoiceCorrect'
+import RoundChoiceIncorrect from './RoundChoiceIncorrect'
 
 class RoundChoiceResult extends Component {
   render() {
@@ -8,4 +11,4 @@ class RoundChoiceResult extends Component {
   }
 }
 
-export default RoundChoiceResult
+export default connect()(RoundChoiceResult)

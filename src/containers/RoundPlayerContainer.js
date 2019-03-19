@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import ActionCable from 'actioncable'
 import { authenticateRound } from '../store/actions/RoundActions'
+import ActionCable from 'actioncable'
 import RoundInstructions from '../components/rounds/player/RoundInstructions'
 import RoundChoiceBlock from '../components/rounds/player/RoundChoiceBlock'
 import RoundChoiceSent from '../components/rounds/player/RoundChoiceSent'
@@ -33,9 +33,6 @@ class RoundPlayerContainer extends Component {
             break
           case "Render Choice Block":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceblock`)
-            break
-          case "Render Choice Sent":
-            this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choicesent`)
             break
           case "Render Choice Result":
             this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choiceresult`)
