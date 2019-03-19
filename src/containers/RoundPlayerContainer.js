@@ -14,7 +14,8 @@ class RoundPlayerContainer extends Component {
     super()
     this.state = {
       cable: {},
-      subscription: {}
+      subscription: {},
+      privateSubscription: {}
     }
   }
 
@@ -45,9 +46,26 @@ class RoundPlayerContainer extends Component {
         }
       }
     })
+    let privateSubscription = cable.subscriptions.create({ channel: "PlayersChannel", token: localStorage.getItem("token") }, {
+      connected: () => {},
+      disconnect: () => {},
+      received: (response) => {
+        switch (response.type) {
+          case "Private Connection":
+            console.log(response.type)
+            break
+          case "Render Choice Sent":
+            this.props.history.push(`/rounds/player/${this.props.match.params.pin}/choicesent`)
+            break
+          default:
+            console.log("A message was sent")
+        }
+      }
+    })
     this.setState({
       cable: cable,
-      subscription: subscription
+      subscription: subscription,
+      privateSubscription: privateSubscription
     })
   }
 
@@ -74,6 +92,7 @@ class RoundPlayerContainer extends Component {
 
   componentWillUnmount() {
     this.state.subscription.consumer.disconnect()
+    this.state.privateSubscription.consumer.disconnect()
   }
 }
 
