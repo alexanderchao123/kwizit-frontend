@@ -34,6 +34,13 @@ export const addPlayers = (players) => {
   }
 }
 
+export const addDecision = (decision) => {
+  return {
+    type: "ADD_DECISION",
+    payload: decision
+  }
+}
+
 
 /*-------- Thunk Creators --------*/
 export const createRound = (quizId, token) => {
@@ -130,7 +137,7 @@ export const createDecision = (choice, roundPin, token) => {
       body: JSON.stringify({choice: choice})
     })
     .then(res => res.json())
-    .then(json => {console.log(json.decision)})
+    .then(json => dispatch(addDecision(json.decision)))
   }
 }
 
