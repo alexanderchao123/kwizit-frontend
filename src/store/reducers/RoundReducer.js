@@ -22,15 +22,20 @@ export default function roundReducer(state = initialState, action) {
     switch (action.type) {
       case "ADD_ROUND":
         return {...state, round: action.payload}
+        break;
       case "ADD_PLAYER":
         return {...state, players: [...state.players, action.payload]}
+        break;
       case "ADD_PLAYERS":
         return {...state, players: [...action.payload]}
-        case "ADD_ROUND_QUESTION":
+        break;
+      case "ADD_ROUND_QUESTION":
         return {...state, round_question: {...action.payload}}
+        break;
       case "DECREMENT_TIME":
         let question = {...state.round_question.question, time: (state.round_question.question.time - action.payload)}
         return {...state, round_question: {...state.round_question, question: question}}
+        break;
       default:
         return state;
     }

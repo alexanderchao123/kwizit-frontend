@@ -14,13 +14,13 @@ class RoundHostContainer extends Component {
     super()
     this.state = {
       cable: {},
-      subscription: {}
+      roundSubscription: {}
     }
   }
 
   createSocket = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
-    let subscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
+    let roundSubscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: () => {
         let roundPin = this.props.match.params.pin
         let token = localStorage.getItem("token")
@@ -54,7 +54,7 @@ class RoundHostContainer extends Component {
     })
     this.setState({
       cable: cable,
-      subscription: subscription
+      roundSubscription: roundSubscription
     })
   }
 
@@ -62,10 +62,10 @@ class RoundHostContainer extends Component {
     return(
       <Fragment>
         <Switch>
-          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} subscription={this.state.subscription}/>}/>
-          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} subscription={this.state.subscription}/>}/>
-          <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props} hey="hey" subscription={this.state.subscription}/>}/>
-          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} subscription={this.state.subscription}/>}/>
+          <Route path="/rounds/host/:pin/lobby" render={(props) => <RoundLobby {...props} subscription={this.state.roundSubscription}/>}/>
+          <Route path="/rounds/host/:pin/questionblock" render={(props) => <RoundQuestionBlock {...props} subscription={this.state.roundSubscription}/>}/>
+          <Route path="/rounds/host/:pin/questionresult" render={(props) => <RoundQuestionResult {...props} hey="hey" subscription={this.state.roundSubscription}/>}/>
+          <Route path="/rounds/host/:pin/scoreboard" render={(props) => <RoundScoreboard {...props} subscription={this.state.roundSubscription}/>}/>
           <Route path="/rounds/host/:pin/gameover" render={(props) => <RoundGameOver {...props}/>}/>
         </Switch>
       </Fragment>
@@ -80,7 +80,7 @@ class RoundHostContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.state.subscription.consumer.disconnect()
+    this.state.roundSubscription.consumer.disconnect()
 
   }
 }
