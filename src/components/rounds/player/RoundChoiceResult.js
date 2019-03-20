@@ -14,13 +14,13 @@ class RoundChoiceResult extends Component {
   }
 
   componentDidMount() {
-    
+
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    decision: state.roundInfo.decision
+    decision: state.roundPlayerInfo.decision
   }
 }
 

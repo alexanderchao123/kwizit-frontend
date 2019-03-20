@@ -34,13 +34,6 @@ export const addPlayers = (players) => {
   }
 }
 
-export const addDecision = (decision) => {
-  return {
-    type: "ADD_DECISION",
-    payload: decision
-  }
-}
-
 
 /*-------- Thunk Creators --------*/
 export const createRound = (quizId, token) => {
@@ -122,22 +115,6 @@ export const updateRoundQuestion = (roundPin, roundQuestionId, token) => {
     })
     .then(res => res.json())
     .then(json => json)
-  }
-}
-
-export const createDecision = (choice, roundPin, token) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/decisions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({choice: choice})
-    })
-    .then(res => res.json())
-    .then(json => dispatch(addDecision(json.decision)))
   }
 }
 
