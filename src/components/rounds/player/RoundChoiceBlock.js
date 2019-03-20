@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { createDecision } from '../../../store/actions/RoundActions'
+import { createDecision } from '../../../store/actions/RoundPlayerActions'
 
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
