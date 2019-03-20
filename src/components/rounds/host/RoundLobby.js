@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import { renderChoiceBlock } from '../../../store/actions/RoundActions'
+import { renderChoiceBlock } from '../../../store/actions/RoundHostActions'
 
 class RoundLobby extends Component {
   clickHandler = (event) => {
@@ -30,8 +30,8 @@ class RoundLobby extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    round: state.roundInfo.round,
-    players: state.roundInfo.players
+    round: state.roundHostInfo.round,
+    players: state.roundHostInfo.players
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { authenticateRound, addPlayer, getPlayers } from '../store/actions/RoundActions'
+import { authenticateRound, addPlayer, getPlayers } from '../store/actions/RoundHostActions'
 import ActionCable from 'actioncable'
 import RoundLobby from '../components/rounds/host/RoundLobby'
 import RoundQuestionBlock from '../components/rounds/host/RoundQuestionBlock'
@@ -18,7 +18,7 @@ class RoundHostContainer extends Component {
     }
   }
 
-  createSocket = (roundPin) => {
+  createConnection = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let roundSubscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: () => {
@@ -76,7 +76,7 @@ class RoundHostContainer extends Component {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.authenticateRound(roundPin, token)
-    .then(() => this.createSocket(roundPin))
+    .then(() => this.createConnection(roundPin))
   }
 
   componentWillUnmount() {
@@ -87,7 +87,7 @@ class RoundHostContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    players: state.roundInfo.players
+    players: state.roundHostInfo.players
   }
 }
 

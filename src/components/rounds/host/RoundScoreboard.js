@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { renderChoiceBlock, renderRanking } from '../../../store/actions/RoundActions'
+import { renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHostActions'
 
 class RoundScoreboard extends Component {
   constructor() {

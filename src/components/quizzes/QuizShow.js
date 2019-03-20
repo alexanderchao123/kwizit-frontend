@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getQuiz, removeQuiz } from '../../store/actions/QuizActions'
-import { createRound } from '../../store/actions/RoundActions'
+import { createRound } from '../../store/actions/RoundHostActions'
 
 class QuizShow extends Component {
   clickHandler = (event) => {
@@ -34,7 +34,7 @@ class QuizShow extends Component {
 const mapStateToProps = (state) => {
   return {
     quiz: state.quizInfo.quiz,
-    round: state.roundInfo.round
+    round: state.roundHostInfo.round
   }
 }
 

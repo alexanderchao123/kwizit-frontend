@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { authenticateRound } from '../store/actions/RoundActions'
+import { authenticateRound } from '../store/actions/RoundPlayerActions'
 import ActionCable from 'actioncable'
 import RoundInstructions from '../components/rounds/player/RoundInstructions'
 import RoundChoiceBlock from '../components/rounds/player/RoundChoiceBlock'
@@ -19,7 +19,7 @@ class RoundPlayerContainer extends Component {
     }
   }
 
-  createSocket = (roundPin) => {
+  createConnection = (roundPin) => {
     let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
     let roundSubscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: () => {},
@@ -87,7 +87,7 @@ class RoundPlayerContainer extends Component {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     this.props.authenticateRound(roundPin, token)
-    .then(() => this.createSocket(roundPin))
+    .then(() => this.createConnection(roundPin))
   }
 
   componentWillUnmount() {

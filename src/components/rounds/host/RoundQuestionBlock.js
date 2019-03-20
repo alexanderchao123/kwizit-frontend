@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundActions'
+import { createRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundHostActions'
 
 class RoundQuestionBlock extends Component {
   constructor(props) {
@@ -71,8 +71,8 @@ class RoundQuestionBlock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    round_question: state.roundInfo.round_question,
-    question: state.roundInfo.round_question.question
+    round_question: state.roundHostInfo.round_question,
+    question: state.roundHostInfo.round_question.question
   }
 }
 
