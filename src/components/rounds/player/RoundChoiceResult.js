@@ -13,7 +13,9 @@ class RoundChoiceResult extends Component {
     )
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -24,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+
   }
 }
 

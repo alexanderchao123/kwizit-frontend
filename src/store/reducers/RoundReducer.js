@@ -18,8 +18,7 @@ let initialState = {
   },
   decision: {
     correct: false
-  },
-  lastQuestion: false
+  }
 }
 
 export default function roundReducer(state = initialState, action) {
