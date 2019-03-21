@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHostActions'
+import { authenticateRound, renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHostActions'
 
 class RoundScoreboard extends Component {
   constructor() {
@@ -11,7 +11,7 @@ class RoundScoreboard extends Component {
   }
 
   clickHandler = (event) => {
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     if (this.state.count > 0) {
       this.props.renderChoiceBlock(this.props.subscription)
       this.props.history.push(`/rounds/host/${roundPin}/questionblock`)
@@ -22,6 +22,7 @@ class RoundScoreboard extends Component {
   }
 
   getCount = () => {
+    // because this is called in componentDidMount, the state is still not set by the parent WIP
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
     fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/count`, {
@@ -50,6 +51,12 @@ class RoundScoreboard extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    round: state.roundHostInfo.round
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     renderChoiceBlock: (subscription) => dispatch(renderChoiceBlock(subscription)),
@@ -57,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(RoundScoreboard)
+export default connect(mapStateToProps, mapDispatchToProps)(RoundScoreboard)

@@ -5,7 +5,7 @@ import { createDecision } from '../../../store/actions/RoundPlayerActions'
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
     let choice = event.target.value
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     let token = localStorage.getItem("token")
     this.props.createDecision(choice, roundPin, token)
   }
@@ -23,10 +23,16 @@ class RoundChoiceBlock extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    round: state.roundPlayerInfo.round
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createDecision: (choice, roundPin, token) => dispatch(createDecision(choice, roundPin, token))
   }
 }
 
-export default connect(null, mapDispatchToProps)(RoundChoiceBlock)
+export default connect(mapStateToProps, mapDispatchToProps)(RoundChoiceBlock)

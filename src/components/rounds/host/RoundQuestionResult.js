@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class RoundQuestionResult extends Component {
   clickHandler = (event) => {
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     this.props.history.push(`/rounds/host/${roundPin}/scoreboard`)
   }
 
@@ -20,4 +21,10 @@ class RoundQuestionResult extends Component {
   }
 }
 
-export default RoundQuestionResult
+const mapStateToProps = (state) => {
+  return {
+    round: state.roundHostInfo.round
+  }
+}
+
+export default connect(mapStateToProps)(RoundQuestionResult)

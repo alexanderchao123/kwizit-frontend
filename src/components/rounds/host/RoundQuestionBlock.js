@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 import { createRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundHostActions'
 
 class RoundQuestionBlock extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       intervalId: 0
     }
   }
 
   transitionToQuestionResult = () => {
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     this.props.history.push(`/rounds/host/${roundPin}/questionresult`)
     this.props.renderChoiceResult(this.props.subscription)
   }
@@ -19,7 +19,7 @@ class RoundQuestionBlock extends Component {
   startCountdownTimer = () => {
     let intervalId = setInterval(() => {
       if (this.props.question.time === 0) {
-        let roundPin = this.props.match.params.pin
+        let roundPin = this.props.round.pin
         let roundQuestionId = this.props.round_question.id
         let token = localStorage.getItem("token")
         this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
@@ -35,7 +35,7 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     let roundQuestionId = this.props.round_question.id
     let token = localStorage.getItem("token")
     this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
@@ -71,6 +71,7 @@ class RoundQuestionBlock extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    round: state.roundHostInfo.round,
     round_question: state.roundHostInfo.round_question,
     question: state.roundHostInfo.round_question.question
   }

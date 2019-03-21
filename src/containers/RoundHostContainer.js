@@ -33,7 +33,9 @@ class RoundHostContainer extends Component {
             console.log(response.type)
             break
           case "Player Connected":
-            this.props.addPlayer(response.data)
+            let roundPin = this.props.match.params.pin
+            let token = localStorage.getItem("token")
+            this.props.getPlayers(roundPin, token)
             break
           case "Render Question Result":
             this.props.history.push(`/rounds/host/${this.props.match.params.pin}/questionresult`)
@@ -87,6 +89,7 @@ class RoundHostContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    round: state.roundHostInfo.round,
     players: state.roundHostInfo.players
   }
 }

@@ -26,9 +26,7 @@ export const authenticateRound = (roundPin, token) => {
       }
     })
     .then(res => res.json())
-    .then(json => {
-      dispatch(addRound(json.round))
-    })
+    .then(json => dispatch(addRound(json.round)))
   }
 }
 
