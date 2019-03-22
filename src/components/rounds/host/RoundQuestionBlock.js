@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundHostActions'
+import { createOrFindRoundQuestion, updateRoundQuestion, decrementTime, renderChoiceResult } from '../../../store/actions/RoundHostActions'
 
 class RoundQuestionBlock extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class RoundQuestionBlock extends Component {
     this.props.renderChoiceResult(this.props.subscription)
   }
 
-  startCountdownTimer = () => {
+  startCountdown = () => {
     let intervalId = setInterval(() => {
       if (this.props.question.time === 0) {
         let roundPin = this.props.round.pin
@@ -30,7 +30,7 @@ class RoundQuestionBlock extends Component {
     this.setState({intervalId: intervalId})
   }
 
-  stopCountdownTimer = () => {
+  stopCountdown = () => {
     clearInterval(this.state.intervalId)
   }
 
@@ -60,12 +60,12 @@ class RoundQuestionBlock extends Component {
   componentDidMount() {
     let roundPin = this.props.match.params.pin
     let token = localStorage.getItem("token")
-    this.props.createRoundQuestion(roundPin, token)
-    this.startCountdownTimer()
+    this.props.createOrFindRoundQuestion(roundPin, token)
+    this.startCountdown()
   }
 
   componentWillUnmount() {
-    this.stopCountdownTimer()
+    this.stopCountdown()
   }
 }
 
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createRoundQuestion: (roundPin, token) => dispatch(createRoundQuestion(roundPin, token)),
+    createOrFindRoundQuestion: (roundPin, token) => dispatch(createOrFindRoundQuestion(roundPin, token)),
     updateRoundQuestion: (roundPin, token) => dispatch(updateRoundQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
     renderChoiceResult: (subscription) => dispatch(renderChoiceResult(subscription))

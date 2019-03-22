@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { createDecision } from '../../../store/actions/RoundPlayerActions'
+import { createOrFindDecision } from '../../../store/actions/RoundPlayerActions'
 
 class RoundChoiceBlock extends Component {
   clickHandler = (event) => {
-    let choice = event.target.value
-    let roundPin = this.props.round.pin
-    let token = localStorage.getItem("token")
-    this.props.createDecision(choice, roundPin, token)
+    let option = {
+      choice: event.target.value,
+      roundPin: this.props.round.pin,
+      token: localStorage.getItem("token")
+    }
+    this.props.createOrFindDecision(option)
   }
 
   render() {
@@ -31,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDecision: (choice, roundPin, token) => dispatch(createDecision(choice, roundPin, token))
+    createOrFindDecision: (options) => dispatch(createOrFindDecision(options))
   }
 }
 

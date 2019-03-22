@@ -1,31 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { authenticateRound, renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHostActions'
+import { renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHostActions'
 
 class RoundScoreboard extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-  }
-
   clickHandler = (event) => {
-    let roundPin = this.props.round.pin
-    if (this.state.count > 0) {
-      this.props.renderChoiceBlock(this.props.subscription)
-      this.props.history.push(`/rounds/host/${roundPin}/questionblock`)
-    } else {
-      this.props.renderRanking(this.props.subscription)
-      this.props.history.push(`/rounds/host/${roundPin}/gameover`)
-    }
+    this.getCount()
+    .then(json => {
+      let roundPin = this.props.round.pin
+      if (json.count > 0) {
+        this.props.renderChoiceBlock(this.props.subscription)
+        this.props.history.push(`/rounds/host/${roundPin}/questionblock`)
+      } else {
+        this.props.renderRanking(this.props.subscription)
+        this.props.history.push(`/rounds/host/${roundPin}/gameover`)
+      }
+    })
   }
 
   getCount = () => {
-    // because this is called in componentDidMount, the state is still not set by the parent WIP
-    let roundPin = this.props.match.params.pin
+    let roundPin = this.props.round.pin
     let token = localStorage.getItem("token")
-    fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/count`, {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/count`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +29,6 @@ class RoundScoreboard extends Component {
       }
     })
     .then(res => res.json())
-    .then(json => this.setState({count: json.count}))
   }
 
   render() {
@@ -46,9 +40,7 @@ class RoundScoreboard extends Component {
     )
   }
 
-  componentDidMount() {
-    this.getCount()
-  }
+  componentDidMount() {}
 }
 
 const mapStateToProps = (state) => {

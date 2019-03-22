@@ -86,7 +86,7 @@ export const getPlayers = (roundPin, token) => {
   }
 }
 
-export const createRoundQuestion = (roundPin, token) => {
+export const createOrFindRoundQuestion = (roundPin, token) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/round_questions`, {
       method: "POST",

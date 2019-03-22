@@ -6,7 +6,7 @@ import QuizDisplay from './QuizDisplay'
 class QuizIndex extends Component {
   renderQuizDisplay = () => {
     return this.props.quizzes.map((quiz) => {
-      return <QuizDisplay key={quiz.id} quiz={quiz}/>
+      return <li><QuizDisplay key={quiz.id} quiz={quiz}/></li>
     })
   }
 
@@ -14,7 +14,9 @@ class QuizIndex extends Component {
     return(
       <Fragment>
         <h1>Quizzes</h1>
-        {this.renderQuizDisplay()}
+        <ul>
+          {this.renderQuizDisplay()}
+        </ul>
       </Fragment>
     )
   }

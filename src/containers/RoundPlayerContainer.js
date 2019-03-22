@@ -19,8 +19,8 @@ class RoundPlayerContainer extends Component {
     }
   }
 
-  createConnection = (roundPin) => {
-    let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
+  createConnection = ({roundPin, token}) => {
+    let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${token}`)
     let roundSubscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: () => {},
       disconnect: () => {},
@@ -84,10 +84,12 @@ class RoundPlayerContainer extends Component {
   }
 
   componentDidMount() {
-    let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    this.props.authenticateRound(roundPin, token)
-    .then(() => this.createConnection(roundPin))
+    let options = {
+      roundPin: this.props.match.params.pin,
+      token: localStorage.getItem("token")
+    }
+    this.props.authenticateRound(options)
+    .then(() => this.createConnection(options))
   }
 
   componentWillUnmount() {
@@ -98,7 +100,7 @@ class RoundPlayerContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authenticateRound: (roundPin, token) => dispatch(authenticateRound(roundPin, token))
+    authenticateRound: (options) => dispatch(authenticateRound(options))
   }
 }
 

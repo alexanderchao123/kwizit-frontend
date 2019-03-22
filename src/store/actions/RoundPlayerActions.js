@@ -15,7 +15,7 @@ export const addDecision = (decision) => {
 
 
 /*-------- Thunk Creators --------*/
-export const authenticateRound = (roundPin, token) => {
+export const authenticateRound = ({roundPin, token}) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`, {
       method: "GET",
@@ -30,7 +30,7 @@ export const authenticateRound = (roundPin, token) => {
   }
 }
 
-export const createDecision = (choice, roundPin, token) => {
+export const createOrFindDecision = ({choice, roundPin, token}) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/decisions`, {
       method: "POST",
@@ -42,6 +42,7 @@ export const createDecision = (choice, roundPin, token) => {
       body: JSON.stringify({choice: choice})
     })
     .then(res => res.json())
-    .then(json => dispatch(addDecision(json.decision)))
+    .then(json => {
+      dispatch(addDecision(json.decision))})
   }
 }
