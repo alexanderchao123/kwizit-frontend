@@ -5,9 +5,11 @@ import { createRound } from '../../store/actions/RoundHostActions'
 
 class QuizShow extends Component {
   clickHandler = (event) => {
-    let quizId = this.props.match.params.quizId
-    let token = localStorage.getItem("token")
-    this.props.createRound(quizId, token)
+    let options = {
+      quizId: this.props.quiz.id,
+      token: localStorage.getItem("token")
+    }
+    this.props.createRound(options)
     .then(() => this.props.history.push(`/rounds/host/${this.props.round.pin}/lobby`))
   }
 

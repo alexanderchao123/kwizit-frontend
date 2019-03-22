@@ -36,7 +36,7 @@ export const addPlayers = (players) => {
 
 
 /*-------- Thunk Creators --------*/
-export const createRound = (quizId, token) => {
+export const createRound = ({quizId, token}) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/quizzes/${quizId}/rounds`, {
       method: "POST",
