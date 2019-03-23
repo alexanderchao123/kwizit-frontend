@@ -37,10 +37,12 @@ class RoundQuestionBlock extends Component {
   }
 
   clickHandler = (event) => {
-    let roundPin = this.props.round.pin
-    let roundQuestionId = this.props.round_question.id
-    let token = localStorage.getItem("token")
-    this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
+    let options = {
+      roundPin: this.props.round.pin,
+      roundQuestionId: this.props.round_question.id,
+      token: localStorage.getItem("token"),
+    }
+    this.props.updateRoundQuestion(options)
     .then(json => this.transitionToQuestionResult())
   }
 
