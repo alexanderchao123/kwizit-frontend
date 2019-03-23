@@ -24,8 +24,10 @@ class QuizShow extends Component {
   }
 
   componentDidMount() {
-    let quizId = this.props.match.params.quizId
-    this.props.getQuiz(quizId)
+    let options = {
+      quizId: this.props.match.params.quizId
+    }
+    this.props.getQuiz(options)
   }
 
   componentWillUnmount() {

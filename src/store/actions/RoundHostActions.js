@@ -36,7 +36,7 @@ export const addPlayers = (players) => {
 
 
 /*-------- Thunk Creators --------*/
-export const createRound = ({quizId, token}) => {
+export const createRound = ({ quizId, token }) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/quizzes/${quizId}/rounds`, {
       method: "POST",
@@ -51,7 +51,7 @@ export const createRound = ({quizId, token}) => {
   }
 }
 
-export const authenticateRound = (roundPin, token) => {
+export const authenticateRound = ({ roundPin, token }) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/authenticate_round/${roundPin}`, {
       method: "GET",
@@ -66,7 +66,7 @@ export const authenticateRound = (roundPin, token) => {
   }
 }
 
-export const getPlayers = (roundPin, token) => {
+export const getPlayers = ({ roundPin, token }) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/admissions`, {
       method: "GET",
@@ -86,7 +86,7 @@ export const getPlayers = (roundPin, token) => {
   }
 }
 
-export const createOrFindRoundQuestion = (roundPin, token) => {
+export const createOrFindRoundQuestion = ({ roundPin, token }) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/round_questions`, {
       method: "POST",
@@ -101,7 +101,7 @@ export const createOrFindRoundQuestion = (roundPin, token) => {
   }
 }
 
-export const updateRoundQuestion = (roundPin, roundQuestionId, token) => {
+export const updateRoundQuestion = ({ roundPin, roundQuestionId, token }) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/round_questions/${roundQuestionId}`, {
       method: "PATCH",

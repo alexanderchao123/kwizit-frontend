@@ -29,7 +29,7 @@ export const removeQuizzes = () => {
 
 
 /*-------- Thunk Creators --------*/
-export const getQuiz = (quizId) => {
+export const getQuiz = ({quizId}) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/quizzes/${quizId}`)
     .then(res => res.json())

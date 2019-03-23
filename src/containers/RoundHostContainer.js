@@ -18,13 +18,11 @@ class RoundHostContainer extends Component {
     }
   }
 
-  createConnection = (roundPin) => {
-    let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${localStorage.getItem("token")}`)
+  createConnection = ({roundPin, token}) => {
+    let cable = ActionCable.createConsumer(`ws://localhost:3000/cable?token=${token}`)
     let roundSubscription = cable.subscriptions.create({ channel: "RoundsChannel", round_pin: roundPin }, {
       connected: () => {
-        let roundPin = this.props.match.params.pin
-        let token = localStorage.getItem("token")
-        this.props.getPlayers(roundPin, token)
+        this.props.getPlayers({ roundPin: roundPin, token: token})
       },
       disconnect: function() {},
       received: (response) => {
@@ -33,12 +31,10 @@ class RoundHostContainer extends Component {
             console.log(response.type)
             break
           case "Player Connected":
-            let roundPin = this.props.match.params.pin
-            let token = localStorage.getItem("token")
-            this.props.getPlayers(roundPin, token)
+            this.props.getPlayers({ roundPin: roundPin, token: token})
             break
           case "Render Question Result":
-            this.props.history.push(`/rounds/host/${this.props.match.params.pin}/questionresult`)
+            this.props.history.push(`/rounds/host/${roundPin}/questionresult`)
             break
           default:
             console.log("A message was sent")
@@ -75,10 +71,12 @@ class RoundHostContainer extends Component {
   }
 
   componentDidMount() {
-    let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    this.props.authenticateRound(roundPin, token)
-    .then(() => this.createConnection(roundPin))
+    let options = {
+      roundPin: this.props.match.params.pin,
+      token: localStorage.getItem("token")
+    }
+    this.props.authenticateRound(options)
+    .then(() => this.createConnection(options))
   }
 
   componentWillUnmount() {

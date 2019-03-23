@@ -19,10 +19,12 @@ class RoundQuestionBlock extends Component {
   startCountdown = () => {
     let intervalId = setInterval(() => {
       if (this.props.question.time === 0) {
-        let roundPin = this.props.round.pin
-        let roundQuestionId = this.props.round_question.id
-        let token = localStorage.getItem("token")
-        this.props.updateRoundQuestion(roundPin, roundQuestionId, token)
+        let options = {
+          roundPin: this.props.round.pin,
+          roundQuestionId: this.props.round_question.id,
+          token: localStorage.getItem("token"),
+        }
+        this.props.updateRoundQuestion(options)
         .then(json => this.transitionToQuestionResult())
       }
       this.props.decrementTime()
@@ -58,10 +60,12 @@ class RoundQuestionBlock extends Component {
   }
 
   componentDidMount() {
-    let roundPin = this.props.match.params.pin
-    let token = localStorage.getItem("token")
-    this.props.createOrFindRoundQuestion(roundPin, token)
-    this.startCountdown()
+    let options = {
+      roundPin: this.props.match.params.pin,
+      token: localStorage.getItem("token")
+    }
+    this.props.createOrFindRoundQuestion(options)
+    .then(() => this.startCountdown())
   }
 
   componentWillUnmount() {
@@ -79,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createOrFindRoundQuestion: (roundPin, token) => dispatch(createOrFindRoundQuestion(roundPin, token)),
+    createOrFindRoundQuestion: (options) => dispatch(createOrFindRoundQuestion(options)),
     updateRoundQuestion: (roundPin, token) => dispatch(updateRoundQuestion(roundPin, token)),
     decrementTime: () => dispatch(decrementTime()),
     renderChoiceResult: (subscription) => dispatch(renderChoiceResult(subscription))
