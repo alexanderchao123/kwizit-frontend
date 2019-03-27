@@ -6,9 +6,16 @@ import styled from 'styled-components'
 
 const Nav = styled.nav`
   background-color: #FF6F61;
+  height: 50px;
+`
+
+const UnorderedList = styled.ul`
+  float: right;
 `
 
 const List = styled.li`
+  color: white;
+  font-weight: 500;
   display: inline;
   margin: 5px 5px;
 `
@@ -22,13 +29,13 @@ class NavSignedIn extends Component {
   render() {
     return(
       <Nav>
-        <ul>
-          <Link to="/"><List>Home</List></Link>
+        <Link to="/"><List>Home</List></Link>
+        <UnorderedList>
           <Link to="/quizzes"><List>Explore Quizzes</List></Link>
           <Link to="/quizzes/new"><List>Create Quiz</List></Link>
           <Link to="/rounds/join"><List>Join Game</List></Link>
           <Link to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></Link>
-        </ul>
+        </UnorderedList>
       </Nav>
     )
   }
