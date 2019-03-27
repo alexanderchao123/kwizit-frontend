@@ -20,6 +20,11 @@ const List = styled.li`
   margin: 5px 5px;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
+
 class NavSignedIn extends Component {
   clickHandler = (event) => {
     this.props.removeUser()
@@ -29,12 +34,12 @@ class NavSignedIn extends Component {
   render() {
     return(
       <Nav>
-        <Link to="/"><List>Home</List></Link>
+        <StyledLink to="/"><List>Home</List></StyledLink>
         <UnorderedList>
-          <Link to="/quizzes"><List>Explore Quizzes</List></Link>
-          <Link to="/quizzes/new"><List>Create Quiz</List></Link>
-          <Link to="/rounds/join"><List>Join Game</List></Link>
-          <Link to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></Link>
+          <StyledLink to="/quizzes"><List>Explore Quizzes</List></StyledLink>
+          <StyledLink to="/quizzes/new"><List>Create Quiz</List></StyledLink>
+          <StyledLink to="/rounds/join"><List>Join Game</List></StyledLink>
+          <StyledLink to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></StyledLink>
         </UnorderedList>
       </Nav>
     )
