@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeUser } from '../../store/actions/UserActions';
+import styled from 'styled-components'
+
+const Nav = styled.nav`
+  background-color: #FF6F61;
+`
+
+const List = styled.li`
+  display: inline;
+`
 
 class NavSignedIn extends Component {
   clickHandler = (event) => {
@@ -11,15 +20,15 @@ class NavSignedIn extends Component {
 
   render() {
     return(
-      <nav>
+      <Nav>
         <ul>
-          <Link to="/"><li>Home</li></Link>
-          <Link to="/quizzes"><li>Explore Quizzes</li></Link>
-          <Link to="/quizzes/new"><li>Create Quiz</li></Link>
-          <Link to="/rounds/join"><li>Join Game</li></Link>
-          <Link to="/users/signout"><li onClick={this.clickHandler}>Sign Out</li></Link>
+          <Link to="/"><List>Home</List></Link>
+          <Link to="/quizzes"><List>Explore Quizzes</List></Link>
+          <Link to="/quizzes/new"><List>Create Quiz</List></Link>
+          <Link to="/rounds/join"><List>Join Game</List></Link>
+          <Link to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></Link>
         </ul>
-      </nav>
+      </Nav>
     )
   }
 }

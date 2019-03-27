@@ -7,7 +7,6 @@ import QuizContainer from './containers/QuizContainer'
 import RoundContainer from './containers/RoundContainer'
 import Home from './components/layouts/Home';
 import { authenticateToken } from './store/actions/UserActions'
-import './App.css';
 
 class App extends Component {
   render() {
