@@ -10,6 +10,7 @@ const Nav = styled.nav`
 
 const List = styled.li`
   display: inline;
+  margin: 5px 5px;
 `
 
 class NavSignedIn extends Component {
