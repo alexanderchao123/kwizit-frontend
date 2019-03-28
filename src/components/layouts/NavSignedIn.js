@@ -5,8 +5,12 @@ import { removeUser } from '../../store/actions/UserActions';
 import styled from 'styled-components'
 
 const Nav = styled.nav`
-  background-color: #FF6F61;
-  height: 50px;
+  background: #FF6F61;
+  padding: 20px 0px;
+
+  @media (max-width: 700px) {
+    background: palevioletred;
+  }
 `
 
 const UnorderedList = styled.ul`
@@ -15,15 +19,14 @@ const UnorderedList = styled.ul`
 
 const List = styled.li`
   color: white;
-  font-weight: 500;
+  font-weight: 600;
   display: inline;
-  margin: 5px 5px;
+  padding: 20px 5px;
 `
 
-const StyledLink = styled(Link)`
+const NavLink = styled(Link)`
   text-decoration: none;
 `
-
 
 class NavSignedIn extends Component {
   clickHandler = (event) => {
@@ -34,12 +37,12 @@ class NavSignedIn extends Component {
   render() {
     return(
       <Nav>
-        <StyledLink to="/"><List>Home</List></StyledLink>
+        <NavLink to="/"><List>Kwizit</List></NavLink>
         <UnorderedList>
-          <StyledLink to="/quizzes"><List>Explore Quizzes</List></StyledLink>
-          <StyledLink to="/quizzes/new"><List>Create Quiz</List></StyledLink>
-          <StyledLink to="/rounds/join"><List>Join Game</List></StyledLink>
-          <StyledLink to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></StyledLink>
+          <NavLink to="/quizzes"><List>Explore Quizzes</List></NavLink>
+          <NavLink to="/quizzes/new"><List>Create Quiz</List></NavLink>
+          <NavLink to="/rounds/join"><List>Join Game</List></NavLink>
+          <NavLink to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></NavLink>
         </UnorderedList>
       </Nav>
     )

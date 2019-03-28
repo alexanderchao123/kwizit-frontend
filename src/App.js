@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import NavContainer from './containers/NavContainer'
+import NavigationContainer from './containers/NavigationContainer'
 import UserContainer from './containers/UserContainer'
 import QuizContainer from './containers/QuizContainer'
 import RoundContainer from './containers/RoundContainer'
@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavContainer/>
+        <NavigationContainer/>
         <Switch>
           <Route path="/users" component={UserContainer}/>
           <Route path="/quizzes" component={QuizContainer}/>
