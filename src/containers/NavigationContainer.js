@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import NavSignedIn from '../components/layouts/NavSignedIn';
-import NavSignedOut from '../components/layouts/NavSignedOut';
+import NavigationSignedIn from '../components/layouts/NavigationSignedIn';
+import NavigationSignedOut from '../components/layouts/NavigationSignedOut';
 
 class NavigationContainer extends Component {
   isSignedIn = () => this.props.user && this.props.isAuthenticated
@@ -9,7 +9,7 @@ class NavigationContainer extends Component {
   render() {
     return(
       <Fragment>
-        {this.isSignedIn() ? <NavSignedIn/> : <NavSignedOut/>}
+        {this.isSignedIn() ? <NavigationSignedIn/> : <NavigationSignedOut/>}
       </Fragment>
     )
   }

@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import HeaderContainer from './containers/HeaderContainer'
-import FooterContainer from './containers/FooterContainer'
-import UserContainer from './containers/UserContainer'
-import QuizContainer from './containers/QuizContainer'
-import RoundContainer from './containers/RoundContainer'
-import Home from './components/layouts/Home';
 import { authenticateToken } from './store/actions/UserActions'
+import { HeaderContainer, FooterContainer, UserContainer, QuizContainer, RoundContainer } from './containers'
+import Home from './components/layouts/Home';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Fragment>
         <HeaderContainer/>
         <Switch>
           <Route path="/users" component={UserContainer}/>
@@ -21,7 +17,7 @@ class App extends Component {
           <Route path="/" component={Home}/>
         </Switch>
         <FooterContainer/>
-      </div>
+      </Fragment>
     );
   }
 

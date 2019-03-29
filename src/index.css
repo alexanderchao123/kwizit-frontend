@@ -1,10 +1,5 @@
 * {
   margin: 0;
-  padding: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
 }
 
 body {
@@ -13,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #FFEFD5;
 }
 
 code {
