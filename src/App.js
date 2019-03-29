@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import NavigationContainer from './containers/NavigationContainer'
+import HeaderContainer from './containers/HeaderContainer'
+import FooterContainer from './containers/FooterContainer'
 import UserContainer from './containers/UserContainer'
 import QuizContainer from './containers/QuizContainer'
 import RoundContainer from './containers/RoundContainer'
@@ -12,13 +13,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavigationContainer/>
+        <HeaderContainer/>
         <Switch>
           <Route path="/users" component={UserContainer}/>
           <Route path="/quizzes" component={QuizContainer}/>
           <Route path="/rounds" render={(props) => <RoundContainer {...props}/>} />
           <Route path="/" component={Home}/>
         </Switch>
+        <FooterContainer/>
       </div>
     );
   }

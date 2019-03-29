@@ -3,14 +3,13 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeUser } from '../../store/actions/UserActions';
 import styled from 'styled-components'
+import AppBar from '@material-ui/core/AppBar'
+import ToolBar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
 const Nav = styled.nav`
   background: #FF6F61;
   padding: 20px 0px;
-
-  @media (max-width: 700px) {
-    background: palevioletred;
-  }
 `
 
 const UnorderedList = styled.ul`
@@ -36,15 +35,19 @@ class NavSignedIn extends Component {
 
   render() {
     return(
-      <Nav>
-        <NavLink to="/"><List>Kwizit</List></NavLink>
-        <UnorderedList>
+      <AppBar position="static">
+        <ToolBar>
+          <Typography>
+            <NavLink to="/"><List>Kwizit</List></NavLink>
+          </Typography>
+          <UnorderedList>
           <NavLink to="/quizzes"><List>Explore Quizzes</List></NavLink>
           <NavLink to="/quizzes/new"><List>Create Quiz</List></NavLink>
           <NavLink to="/rounds/join"><List>Join Game</List></NavLink>
           <NavLink to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></NavLink>
-        </UnorderedList>
-      </Nav>
+          </UnorderedList>
+        </ToolBar>
+      </AppBar>
     )
   }
 }
