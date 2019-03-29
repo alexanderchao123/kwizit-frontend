@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background-color: #FF6F61;
+  /* background-color: #FF6F61; */
 `
 
 const List = styled.li`

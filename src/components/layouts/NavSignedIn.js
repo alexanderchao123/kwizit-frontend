@@ -3,13 +3,14 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeUser } from '../../store/actions/UserActions';
 import styled from 'styled-components'
-import AppBar from '@material-ui/core/AppBar'
-import ToolBar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 
-const Nav = styled.nav`
+const StyledToolbar = styled(Toolbar)`
   background: #FF6F61;
-  padding: 20px 0px;
+`
+
+const StyledTypography = styled(Typography)`
+  flex: 1
 `
 
 const UnorderedList = styled.ul`
@@ -17,15 +18,16 @@ const UnorderedList = styled.ul`
 `
 
 const List = styled.li`
-  color: white;
   font-weight: 600;
   display: inline;
   padding: 20px 5px;
 `
 
-const NavLink = styled(Link)`
+const StyledLink = styled(Link)`
+  color: white;
   text-decoration: none;
 `
+
 
 class NavSignedIn extends Component {
   clickHandler = (event) => {
@@ -36,17 +38,17 @@ class NavSignedIn extends Component {
   render() {
     return(
       <AppBar position="static">
-        <ToolBar>
-          <Typography>
-            <NavLink to="/"><List>Kwizit</List></NavLink>
-          </Typography>
+        <StyledToolbar>
+          <StyledTypography>
+            <List><StyledLink to="/">Kwizit</StyledLink></List>
+          </StyledTypography>
           <UnorderedList>
-          <NavLink to="/quizzes"><List>Explore Quizzes</List></NavLink>
-          <NavLink to="/quizzes/new"><List>Create Quiz</List></NavLink>
-          <NavLink to="/rounds/join"><List>Join Game</List></NavLink>
-          <NavLink to="/users/signout"><List onClick={this.clickHandler}>Sign Out</List></NavLink>
+            <List><StyledLink to="/quizzes">Explore Quizzes</StyledLink></List>
+            <List><StyledLink to="/quizzes/new">Create Quiz</StyledLink></List>
+            <List><StyledLink to="/rounds/join">Join Game</StyledLink></List>
+            <List onClick={this.clickHandler}><StyledLink to="/users/signout">Sign Out</StyledLink></List>
           </UnorderedList>
-        </ToolBar>
+        </StyledToolbar>
       </AppBar>
     )
   }
