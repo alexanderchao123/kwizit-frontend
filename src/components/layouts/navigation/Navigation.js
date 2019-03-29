@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import NavigationSignedIn from '../components/layouts/NavigationSignedIn';
-import NavigationSignedOut from '../components/layouts/NavigationSignedOut';
+import NavigationSignedIn from './NavigationSignedIn';
+import NavigationSignedOut from './NavigationSignedOut';
 
-class NavigationContainer extends Component {
+class Navigation extends Component {
   isSignedIn = () => this.props.user && this.props.isAuthenticated
 
   render() {
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(NavigationContainer)
+export default connect(mapStateToProps)(Navigation)

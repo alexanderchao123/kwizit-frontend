@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { removeUser } from '../../store/actions/UserActions';
+import { removeUser } from '../../../store/actions/UserActions';
 import { StyledAppBar, StyledToolbar, StyledTypography, UnorderedList, List, StyledLink} from './NavigationStyled'
 
 class NavSignedIn extends Component {

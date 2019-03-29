@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import NavigationContainer from './NavigationContainer'
+import Navigation from '../components/layouts/navigation/Navigation'
 
 class HeaderContainer extends Component {
   render() {
     return(
       <Fragment>
-        <NavigationContainer/>
+        <Navigation/>
       </Fragment>
     )
   }
