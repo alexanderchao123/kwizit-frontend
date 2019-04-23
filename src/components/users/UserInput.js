@@ -1,31 +1,34 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
 import { InputBase, withStyles } from '@material-ui/core'
 
 const styles = {
   root: {
-    backgroundColor: 'gray',
     width: '100%',
+    height: `45px`,
+    margin: '10px 0px',
+    fontSize: '18px',
+    border: '1px solid #7C5CFF',
+    backgroundColor: 'white'
   },
+  
   input: {
+    height: '35px',
+    padding: '5px 10px',
     backgroundColor: 'white',
-    margin: '10px',
   },
 }
 
 class UserInput extends Component {
   render() {
     return (
-      <InputBase classes={{
-        root: this.props.classes.root,
-        input: this.props.classes.input
-      }}/>
+      <InputBase {...this.props}
+        classes={{
+          root: this.props.classes.root,
+          input: this.props.classes.input
+        }}
+      />
     )
   }
 }
-
-// UserInput.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default withStyles(styles)(UserInput)

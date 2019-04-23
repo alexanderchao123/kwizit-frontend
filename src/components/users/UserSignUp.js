@@ -1,26 +1,11 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
 import { InputBase, Button, withStyles } from '@material-ui/core'
 import styled from 'styled-components'
+import UserInput from './UserInput'
 
 const styles = {
-  rootInputBase: {
-    width: '100%',
-    height: `45px`,
-    margin: '10px 0px',
-    fontSize: '18px',
-    border: '1px solid #7C5CFF',
-    // borderRadius: '10px',
-    backgroundColor: 'white'
-  },
-
-  input: {
-    height: '35px',
-    padding: '5px 10px',
-    backgroundColor: 'white',
-  },
-
   rootButtonUpload: {
     width: '100%',
     fontSize: '20px',
@@ -117,65 +102,44 @@ class UserSignUp extends Component {
     })
   }
 
-  // <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileChangeHandler}/></div>
-
   render() {
     return(
       <SignUpBody>
         <FormWrapper>
           <StyledForm onSubmit={this.submitHandler}>
             <StyledHeader>Sign Up</StyledHeader>
-            <InputBase
+            <UserInput
               name="first_name"
               placeholder="First Name"
               value={this.state.first_name}
               onChange={this.changeHandler}
-              classes={{
-                root: this.props.classes.rootInputBase,
-                input: this.props.classes.input
-              }}
             />
-            <InputBase
+            <UserInput
               name="last_name"
               placeholder="Last Name"
               value={this.state.last_name}
               onChange={this.changeHandler}
-              classes={{
-                root: this.props.classes.rootInputBase,
-                input: this.props.classes.input
-              }}
             />
-            <InputBase
+            <UserInput
               name="email"
               placeholder="Email"
               value={this.state.email}
               onChange={this.changeHandler}
-              classes={{
-                root: this.props.classes.rootInputBase,
-                input: this.props.classes.input
-              }}
             />
-            <InputBase
+            <UserInput
               name="password"
               placeholder="Password"
+              type="password"
               value={this.state.password}
               onChange={this.changeHandler}
-              classes={{
-                root: this.props.classes.rootInputBase,
-                input: this.props.classes.input
-              }}
             />
-            <InputBase
+            <UserInput
               name="password_confirmation"
               placeholder="Password Confirmation"
+              type="password"
               value={this.state.password_confirmation}
               onChange={this.changeHandler}
-              classes={{
-                root: this.props.classes.rootInputBase,
-                input: this.props.classes.input
-              }}
             />
-
             <input
               name="avatar"
               accept="image/*"
