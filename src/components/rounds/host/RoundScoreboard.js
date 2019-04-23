@@ -4,7 +4,7 @@ import { renderChoiceBlock, renderRanking } from '../../../store/actions/RoundHo
 
 class RoundScoreboard extends Component {
   clickHandler = (event) => {
-    this.getCount()
+    this.getQuestionCount()
     .then(json => {
       let roundPin = this.props.round.pin
       if (json.count > 0) {
@@ -17,10 +17,10 @@ class RoundScoreboard extends Component {
     })
   }
 
-  getCount = () => {
+  getQuestionCount = () => {
     let roundPin = this.props.round.pin
     let token = localStorage.getItem("token")
-    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/count`, {
+    return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/question_count`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

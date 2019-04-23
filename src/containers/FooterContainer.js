@@ -1,11 +1,12 @@
 import React, { Component, Fragment} from 'react'
+import SocialMedia from '../components/layouts/footer/SocialMedia'
 
 class FooterContainer extends Component {
   render() {
     return(
       <Fragment>
         <hr></hr>
-        <h1>Footer</h1>
+        <SocialMedia/>
       </Fragment>
     )
   }

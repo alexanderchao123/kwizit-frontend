@@ -1,3 +1,15 @@
+/*
+Kahoot Orange Color Code: #F5A23D
+Kahoot Blue Color Code: #1368CE
+Kahoot Light Blue Color Code: #45A3E5
+Kahoot Red Color Code: #E21B3C
+Kahoot Green Color Code: #298F0D
+Kahoot Purple Color Code: #864CBF
+Kahoot Yellow Color Code: #D89E00
+Kahoot Correct Green Color Code: #66bf39
+Kahoot Incorrect Purple Red Color Code: #FF3355
+*/
+
 * {
   margin: 0;
 }
@@ -8,7 +20,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #FFEFD5;
+  height: 100%;
 }
 
 code {

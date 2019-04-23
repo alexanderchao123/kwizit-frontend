@@ -1,6 +1,78 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
+import { InputBase, Button, withStyles } from '@material-ui/core'
+import styled from 'styled-components'
+
+const styles = {
+  rootInputBase: {
+    width: '100%',
+    height: `45px`,
+    margin: '10px 0px',
+    fontSize: '18px',
+    border: '1px solid #7C5CFF',
+    // borderRadius: '10px',
+    backgroundColor: 'white'
+  },
+
+  input: {
+    height: '35px',
+    padding: '5px 10px',
+    backgroundColor: 'white',
+  },
+
+  rootButtonUpload: {
+    width: '100%',
+    fontSize: '20px',
+    fontWeight: '600',
+    color: '#7C5CFF',
+    border: '2px solid #7C5CFF',
+    margin: '10px 0px',
+  },
+
+  inputButtonUpload: {
+    display: 'none',
+  },
+
+  rootButton: {
+    width: '100%',
+    fontSize: '20px',
+    fontWeight: '600',
+    color: 'white',
+    margin: '10px 0px',
+    borderRadius: '0px',
+    backgroundColor: '#7C5CFF',
+    '&:hover': {
+      backgroundColor: '#7C5CFF',
+    },
+  },
+}
+
+const SignUpBody = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #FFF1E6;
+`
+
+const FormWrapper = styled.div`
+  width: 350px;
+  height: 500px;
+  margin: auto;
+  padding: 50px 0px;
+  display: table;
+`
+
+const StyledForm = styled.form`
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+`
+
+const StyledHeader = styled.h1`
+  color: #7C5CFF;
+  margin-bottom: 25px;
+  font-size: 40px;
+`
 
 class UserSignUp extends Component {
   constructor() {
@@ -45,19 +117,89 @@ class UserSignUp extends Component {
     })
   }
 
+  // <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileChangeHandler}/></div>
+
   render() {
     return(
-      <div>
-        <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="first_name" value={this.state.first_name} placeholder="First Name" onChange={this.changeHandler} /></div>
-          <div><input type="text" name="last_name" value={this.state.last_name} placeholder="Last Name" onChange={this.changeHandler} /></div>
-          <div><input type="text" name="email" value={this.state.email} placeholder="Email" onChange={this.changeHandler} /></div>
-          <div><input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.changeHandler} /></div>
-          <div><input type="password" name="password_confirmation" value={this.state.password_confirmation} placeholder="Password Confirmation" onChange={this.changeHandler} /></div>
-          <div><input type="file" name="avatar" placeholder="Avatar" onChange={this.fileChangeHandler}/></div>
-          <div><button type="submit">Sign Up</button></div>
-        </form>
-      </div>
+      <SignUpBody>
+        <FormWrapper>
+          <StyledForm onSubmit={this.submitHandler}>
+            <StyledHeader>Sign Up</StyledHeader>
+            <InputBase
+              name="first_name"
+              placeholder="First Name"
+              value={this.state.first_name}
+              onChange={this.changeHandler}
+              classes={{
+                root: this.props.classes.rootInputBase,
+                input: this.props.classes.input
+              }}
+            />
+            <InputBase
+              name="last_name"
+              placeholder="Last Name"
+              value={this.state.last_name}
+              onChange={this.changeHandler}
+              classes={{
+                root: this.props.classes.rootInputBase,
+                input: this.props.classes.input
+              }}
+            />
+            <InputBase
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.changeHandler}
+              classes={{
+                root: this.props.classes.rootInputBase,
+                input: this.props.classes.input
+              }}
+            />
+            <InputBase
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.changeHandler}
+              classes={{
+                root: this.props.classes.rootInputBase,
+                input: this.props.classes.input
+              }}
+            />
+            <InputBase
+              name="password_confirmation"
+              placeholder="Password Confirmation"
+              value={this.state.password_confirmation}
+              onChange={this.changeHandler}
+              classes={{
+                root: this.props.classes.rootInputBase,
+                input: this.props.classes.input
+              }}
+            />
+
+            <input
+              name="avatar"
+              accept="image/*"
+              id="outlined-button-file"
+              className={this.props.classes.inputButtonUpload}
+              multiple
+              type="file"
+              onChange={this.fileChangeHandler}
+            />
+            <label htmlFor="outlined-button-file">
+              <Button classes={{root: this.props.classes.rootButtonUpload}} variant="outlined" component="span">
+                Upload Avatar
+              </Button>
+            </label>
+
+            <Button
+              type="submit"
+              classes={{
+                root: this.props.classes.rootButton
+              }}
+            >Sign Up</Button>
+          </StyledForm>
+        </FormWrapper>
+      </SignUpBody>
     )
   }
 }
@@ -68,4 +210,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserSignUp)
+// const styledUserSignUp = withStyles(styles)(UserSignUp)
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(UserSignUp))

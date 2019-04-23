@@ -116,6 +116,23 @@ export const updateRoundQuestion = ({ roundPin, roundQuestionId, token }) => {
   }
 }
 
+// export const getScores = ({roundPin, token}) => {
+//   return (dispatch) => {
+//     return fetch(`http://localhost:3000/api/v1/rounds/${roundPin}/admissions`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accepts: "application/json",
+//         Authorization: `Bearer ${token}`
+//       }
+//     })
+//     .then(res => res.json())
+//     .then(json => {
+//
+//     })
+//   }
+// }
+
 
 /*-------- Thunk Creators For ActionCable --------*/
 export const renderChoiceBlock = (subscription) => {
