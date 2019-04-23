@@ -10,7 +10,6 @@ const styles = {
     border: '1px solid #7C5CFF',
     backgroundColor: 'white'
   },
-  
   input: {
     height: '35px',
     padding: '5px 10px',

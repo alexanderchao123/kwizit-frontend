@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
-import { InputBase, Button, withStyles } from '@material-ui/core'
+import { Button, withStyles } from '@material-ui/core'
 import styled from 'styled-components'
 import UserInput from './UserInput'
+import UserSubmitButton from './UserSubmitButton'
 
 const styles = {
   rootButtonUpload: {
@@ -14,22 +15,8 @@ const styles = {
     border: '2px solid #7C5CFF',
     margin: '10px 0px',
   },
-
   inputButtonUpload: {
     display: 'none',
-  },
-
-  rootButton: {
-    width: '100%',
-    fontSize: '20px',
-    fontWeight: '600',
-    color: 'white',
-    margin: '10px 0px',
-    borderRadius: '0px',
-    backgroundColor: '#7C5CFF',
-    '&:hover': {
-      backgroundColor: '#7C5CFF',
-    },
   },
 }
 
@@ -154,13 +141,7 @@ class UserSignUp extends Component {
                 Upload Avatar
               </Button>
             </label>
-
-            <Button
-              type="submit"
-              classes={{
-                root: this.props.classes.rootButton
-              }}
-            >Sign Up</Button>
+            <UserSubmitButton>Sign Up</UserSubmitButton>
           </StyledForm>
         </FormWrapper>
       </SignUpBody>
