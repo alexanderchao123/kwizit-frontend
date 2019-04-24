@@ -55,9 +55,6 @@ class RoundJoin extends Component {
     .then(json => this.props.history.push(`/rounds/player/${roundPin}/instructions`))
   }
 
-  // <div><input type="text" name="pin" value={this.state.pin} placeholder="Enter Pin" onChange={this.changeHandler}/></div>
-  // <div><button type="submit">Enter</button></div>
-
   render() {
     return (
       <RoundJoinBody>

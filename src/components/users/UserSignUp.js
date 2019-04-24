@@ -7,7 +7,7 @@ import UserSubmitButton from './UserSubmitButton'
 import styled from 'styled-components'
 
 const styles = {
-  buttonUploadRoot: {
+  root: {
     width: '100%',
     height: '45px',
     margin: '5px 0px',
@@ -17,7 +17,7 @@ const styles = {
     borderRadius: '0px',
     color: '#7C5CFF',
   },
-  buttonUploadInput: {
+  input: {
     display: 'none',
   },
 }
@@ -133,13 +133,13 @@ class UserSignUp extends Component {
               name="avatar"
               accept="image/*"
               id="outlined-button-file"
-              className={this.props.classes.buttonUploadInput}
+              className={this.props.classes.input}
               multiple
               type="file"
               onChange={this.fileChangeHandler}
             />
             <label htmlFor="outlined-button-file">
-              <Button className={this.props.classes.buttonUploadRoot} variant="outlined" component="span">
+              <Button className={this.props.classes.root} variant="outlined" component="span">
                 Upload Avatar
               </Button>
             </label>

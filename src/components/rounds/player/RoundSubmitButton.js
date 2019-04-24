@@ -19,10 +19,14 @@ const styles = {
 
 class RoundSubmitButton extends Component {
   render() {
+    const { classes } = this.props
+    
     return(
       <Button {...this.props}
         type="submit"
-        classes={{root: this.props.classes.root}}
+        classes={{
+          root: classes.root
+        }}
       />
     )
   }
