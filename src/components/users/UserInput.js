@@ -19,11 +19,13 @@ const styles = {
 
 class UserInput extends Component {
   render() {
+    const { classes } = this.props
+
     return (
       <InputBase {...this.props}
         classes={{
-          root: this.props.classes.root,
-          input: this.props.classes.input
+          root: classes.root,
+          input: classes.input
         }}
       />
     )
