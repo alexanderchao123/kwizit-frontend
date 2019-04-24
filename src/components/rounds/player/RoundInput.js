@@ -17,7 +17,7 @@ const styles = {
   },
 }
 
-class UserInput extends Component {
+class RoundInput extends Component {
   render() {
     return (
       <InputBase {...this.props}
@@ -30,4 +30,4 @@ class UserInput extends Component {
   }
 }
 
-export default withStyles(styles)(UserInput)
+export default withStyles(styles)(RoundInput)

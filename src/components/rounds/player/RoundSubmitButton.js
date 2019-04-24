@@ -17,7 +17,7 @@ const styles = {
   },
 }
 
-class UserSubmitButton extends Component {
+class RoundSubmitButton extends Component {
   render() {
     return(
       <Button {...this.props}
@@ -28,4 +28,4 @@ class UserSubmitButton extends Component {
   }
 }
 
-export default withStyles(styles)(UserSubmitButton)
+export default withStyles(styles)(RoundSubmitButton)

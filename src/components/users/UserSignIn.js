@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../../store/actions/UserActions';
-import styled from 'styled-components'
 import UserInput from './UserInput'
 import UserSubmitButton from './UserSubmitButton'
+import styled from 'styled-components'
 
 const SignInBody = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const StyledForm = styled.form`
 const StyledHeader = styled.h1`
   color: #7C5CFF;
   margin-bottom: 25px;
-  font-size: 40px;
+  font-size: 35px;
 `
 
 class UserSignIn extends Component {
@@ -60,7 +60,7 @@ class UserSignIn extends Component {
       <SignInBody>
         <FormWrapper>
           <StyledForm onSubmit={this.submitHandler}>
-            <StyledHeader>Log In</StyledHeader>
+            <StyledHeader>Sign In</StyledHeader>
             <UserInput
               type="text"
               name="email"

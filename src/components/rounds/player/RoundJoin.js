@@ -1,4 +1,33 @@
 import React, { Component } from 'react'
+import RoundInput from './RoundInput'
+import RoundSubmitButton from './RoundSubmitButton'
+import styled from 'styled-components'
+
+const RoundJoinBody = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #FFF1E6;
+`
+
+const FormWrapper = styled.div`
+  width: 350px;
+  height: 500px;
+  margin: auto;
+  padding: 50px 0px;
+  display: table;
+`
+
+const StyledForm = styled.form`
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+`
+
+const StyledHeader = styled.h1`
+  color: #7C5CFF;
+  margin-bottom: 25px;
+  font-size: 35px;
+`
 
 class RoundJoin extends Component {
   constructor() {
@@ -26,15 +55,26 @@ class RoundJoin extends Component {
     .then(json => this.props.history.push(`/rounds/player/${roundPin}/instructions`))
   }
 
+  // <div><input type="text" name="pin" value={this.state.pin} placeholder="Enter Pin" onChange={this.changeHandler}/></div>
+  // <div><button type="submit">Enter</button></div>
+
   render() {
     return (
-      <div>
-        <h2>Join A Round</h2>
-        <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="pin" value={this.state.pin} placeholder="Enter Pin" onChange={this.changeHandler}/></div>
-          <div><button type="submit">Enter</button></div>
-        </form>
-      </div>
+      <RoundJoinBody>
+        <FormWrapper>
+          <StyledForm onSubmit={this.submitHandler}>
+            <StyledHeader>Join A Round</StyledHeader>
+            <RoundInput
+              type="text"
+              name="pin"
+              value={this.state.pin}
+              placeholder="Enter Pin"
+              onChange={this.changeHandler}
+            />
+            <RoundSubmitButton>Join</RoundSubmitButton>
+          </StyledForm>
+        </FormWrapper>
+      </RoundJoinBody>
     )
   }
 }

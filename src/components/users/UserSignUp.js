@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
 import { Button, withStyles } from '@material-ui/core'
-import styled from 'styled-components'
 import UserInput from './UserInput'
 import UserSubmitButton from './UserSubmitButton'
+import styled from 'styled-components'
 
 const styles = {
-  rootButtonUpload: {
+  buttonUploadRoot: {
     width: '100%',
-    fontSize: '20px',
+    height: '45px',
+    margin: '5px 0px',
+    fontSize: '18px',
     fontWeight: '600',
-    color: '#7C5CFF',
     border: '2px solid #7C5CFF',
-    margin: '10px 0px',
+    borderRadius: '0px',
+    color: '#7C5CFF',
   },
-  inputButtonUpload: {
+  buttonUploadInput: {
     display: 'none',
   },
 }
@@ -43,7 +45,7 @@ const StyledForm = styled.form`
 const StyledHeader = styled.h1`
   color: #7C5CFF;
   margin-bottom: 25px;
-  font-size: 40px;
+  font-size: 35px;
 `
 
 class UserSignUp extends Component {
@@ -131,13 +133,13 @@ class UserSignUp extends Component {
               name="avatar"
               accept="image/*"
               id="outlined-button-file"
-              className={this.props.classes.inputButtonUpload}
+              className={this.props.classes.buttonUploadInput}
               multiple
               type="file"
               onChange={this.fileChangeHandler}
             />
             <label htmlFor="outlined-button-file">
-              <Button classes={{root: this.props.classes.rootButtonUpload}} variant="outlined" component="span">
+              <Button className={this.props.classes.buttonUploadRoot} variant="outlined" component="span">
                 Upload Avatar
               </Button>
             </label>
