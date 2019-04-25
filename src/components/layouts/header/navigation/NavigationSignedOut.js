@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import NavigationAppBar from './NavigationAppBar'
-import NavigationToolbar from './NavigationToolbar'
-import NavigationTypography from './NavigationTypography'
-import NavigationUnorderedList from './NavigationUnorderedList'
-import NavigationList from './NavigationList'
-import NavigationLink from './NavigationLink'
+import NavigationAppBar from './elements/NavigationAppBar'
+import NavigationToolbar from './elements/NavigationToolbar'
+import NavigationTypography from './elements/NavigationTypography'
+import NavigationUnorderedList from './elements/NavigationUnorderedList'
+import NavigationList from './elements/NavigationList'
+import NavigationLink from './elements/NavigationLink'
 
 class NavSignedOut extends Component {
   render() {
