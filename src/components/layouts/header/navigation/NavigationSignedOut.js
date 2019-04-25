@@ -5,12 +5,7 @@ import NavigationAppBar from './NavigationAppBar'
 import NavigationToolbar from './NavigationToolbar'
 import NavigationTypography from './NavigationTypography'
 import NavigationUnorderedList from './NavigationUnorderedList'
-
-const List = styled.li`
-  font-weight: 600;
-  display: inline;
-  padding: 20px 5px;
-`
+import NavigationList from './NavigationList'
 
 const StyledLink = styled(Link)`
   color: white;
@@ -23,12 +18,18 @@ class NavSignedOut extends Component {
       <NavigationAppBar position="static">
         <NavigationToolbar>
           <NavigationTypography>
-            <List><StyledLink to="/">Kwizit</StyledLink></List>
+            <NavigationList><StyledLink to="/">Kwizit</StyledLink></NavigationList>
           </NavigationTypography>
           <NavigationUnorderedList>
-            <List><StyledLink to="/quizzes">Explore Quizzes</StyledLink></List>
-            <List><StyledLink to="/users/signup">Sign Up</StyledLink></List>
-            <List><StyledLink to="/users/signin">Sign In</StyledLink></List>
+            <NavigationList>
+              <StyledLink to="/quizzes">Explore Quizzes</StyledLink>
+            </NavigationList>
+            <NavigationList>
+              <StyledLink to="/users/signup">Sign Up</StyledLink>
+            </NavigationList>
+            <NavigationList>
+              <StyledLink to="/users/signin">Sign In</StyledLink>
+            </NavigationList>
           </NavigationUnorderedList>
         </NavigationToolbar>
       </NavigationAppBar>
