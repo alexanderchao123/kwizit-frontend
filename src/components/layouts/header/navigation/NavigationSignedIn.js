@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { removeUser } from '../../../../store/actions/UserActions';
-import { StyledAppBar, StyledToolbar, StyledTypography, UnorderedList, List, StyledLink} from './NavigationStyled'
+import NavigationAppBar from './NavigationAppBar'
+import NavigationToolbar from './NavigationToolbar'
+import NavigationTypography from './NavigationTypography'
+
+
+const UnorderedList = styled.ul`
+`
+
+const List = styled.li`
+  font-weight: 600;
+  display: inline;
+  padding: 20px 5px;
+`
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`
 
 class NavSignedIn extends Component {
   clickHandler = (event) => {
@@ -12,19 +30,19 @@ class NavSignedIn extends Component {
 
   render() {
     return(
-      <StyledAppBar position="static">
-        <StyledToolbar>
-          <StyledTypography>
+      <NavigationAppBar position="static">
+        <NavigationToolbar>
+          <NavigationTypography>
             <List><StyledLink to="/">Kwizit</StyledLink></List>
-          </StyledTypography>
+          </NavigationTypography>
           <UnorderedList>
             <List><StyledLink to="/quizzes">Explore Quizzes</StyledLink></List>
             <List><StyledLink to="/quizzes/new">Create Quiz</StyledLink></List>
             <List><StyledLink to="/rounds/join">Join Game</StyledLink></List>
             <List onClick={this.clickHandler}><StyledLink to="/users/signout">Sign Out</StyledLink></List>
           </UnorderedList>
-        </StyledToolbar>
-      </StyledAppBar>
+        </NavigationToolbar>
+      </NavigationAppBar>
     )
   }
 }
