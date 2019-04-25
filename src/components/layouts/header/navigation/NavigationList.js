@@ -11,7 +11,7 @@ class NavigationList extends Component {
   render() {
     return(
       <Fragment>
-        <List {...this.props} />
+        <List {...this.props}/>
       </Fragment>
     )
   }

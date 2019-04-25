@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components'
 import NavigationAppBar from './NavigationAppBar'
 import NavigationToolbar from './NavigationToolbar'
 import NavigationTypography from './NavigationTypography'
 import NavigationUnorderedList from './NavigationUnorderedList'
 import NavigationList from './NavigationList'
-
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-`
+import NavigationLink from './NavigationLink'
 
 class NavSignedOut extends Component {
   render() {
@@ -18,17 +12,19 @@ class NavSignedOut extends Component {
       <NavigationAppBar position="static">
         <NavigationToolbar>
           <NavigationTypography>
-            <NavigationList><StyledLink to="/">Kwizit</StyledLink></NavigationList>
+            <NavigationList>
+              <NavigationLink to="/">Kwizit</NavigationLink>
+            </NavigationList>
           </NavigationTypography>
           <NavigationUnorderedList>
             <NavigationList>
-              <StyledLink to="/quizzes">Explore Quizzes</StyledLink>
+              <NavigationLink to="/quizzes">Explore Quizzes</NavigationLink>
             </NavigationList>
             <NavigationList>
-              <StyledLink to="/users/signup">Sign Up</StyledLink>
+              <NavigationLink to="/users/signup">Sign Up</NavigationLink>
             </NavigationList>
             <NavigationList>
-              <StyledLink to="/users/signin">Sign In</StyledLink>
+              <NavigationLink to="/users/signin">Sign In</NavigationLink>
             </NavigationList>
           </NavigationUnorderedList>
         </NavigationToolbar>
