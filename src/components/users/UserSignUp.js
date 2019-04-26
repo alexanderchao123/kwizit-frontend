@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../store/actions/UserActions'
 import { Button, withStyles } from '@material-ui/core'
-import UserInput from './UserInput'
-import UserSubmitButton from './UserSubmitButton'
-import styled from 'styled-components'
+import UserBody from './elements/UserBody'
+import UserFormWrapper from './elements/UserFormWrapper'
+import UserForm from './elements/UserForm'
+import UserHeader from './elements/UserHeader'
+import UserInput from './elements/UserInput'
+import UserSubmitButton from './elements/UserSubmitButton'
 
 const styles = {
   root: {
@@ -21,32 +24,6 @@ const styles = {
     display: 'none',
   },
 }
-
-const SignUpBody = styled.div`
-  width: 100%;
-  height: 100%;
-  background: #FFF1E6;
-`
-
-const FormWrapper = styled.div`
-  width: 350px;
-  height: 500px;
-  margin: auto;
-  padding: 50px 0px;
-  display: table;
-`
-
-const StyledForm = styled.form`
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-`
-
-const StyledHeader = styled.h1`
-  color: #7C5CFF;
-  margin-bottom: 25px;
-  font-size: 35px;
-`
 
 class UserSignUp extends Component {
   constructor() {
@@ -93,10 +70,10 @@ class UserSignUp extends Component {
 
   render() {
     return(
-      <SignUpBody>
-        <FormWrapper>
-          <StyledForm onSubmit={this.submitHandler}>
-            <StyledHeader>Sign Up</StyledHeader>
+      <UserBody>
+        <UserFormWrapper>
+          <UserForm onSubmit={this.submitHandler}>
+            <UserHeader>Sign Up</UserHeader>
             <UserInput
               name="first_name"
               placeholder="First Name"
@@ -144,9 +121,9 @@ class UserSignUp extends Component {
               </Button>
             </label>
             <UserSubmitButton>Sign Up</UserSubmitButton>
-          </StyledForm>
-        </FormWrapper>
-      </SignUpBody>
+          </UserForm>
+        </UserFormWrapper>
+      </UserBody>
     )
   }
 }
