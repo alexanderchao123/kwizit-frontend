@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RoundJoinBody from './elements/RoundJoinBody'
 import RoundJoinFormWrapper from './elements/RoundJoinFormWrapper'
 import RoundJoinForm from './elements/RoundJoinForm'
+import RoundJoinHeader from './elements/RoundJoinHeader'
 import RoundInput from './elements/RoundInput'
 import RoundSubmitButton from './elements/RoundSubmitButton'
 import styled from 'styled-components'
@@ -20,11 +21,11 @@ import styled from 'styled-components'
 //   display: table;
 // `
 
-const StyledForm = styled.form`
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-`
+// const StyledForm = styled.form`
+//   display: table-cell;
+//   text-align: center;
+//   vertical-align: middle;
+// `
 
 const StyledHeader = styled.h1`
   color: #7C5CFF;
@@ -63,7 +64,7 @@ class RoundJoin extends Component {
       <RoundJoinBody>
         <RoundJoinFormWrapper>
           <RoundJoinForm onSubmit={this.submitHandler}>
-            <StyledHeader>Join A Round</StyledHeader>
+            <RoundJoinHeader>Join A Round</RoundJoinHeader>
             <RoundInput
               type="text"
               name="pin"
