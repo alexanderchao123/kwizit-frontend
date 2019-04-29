@@ -17,7 +17,7 @@ const styles = {
   },
 }
 
-class UserSubmitButton extends Component {
+class QuizSubmitButton extends Component {
   render() {
     const { classes } = this.props
 
@@ -32,4 +32,4 @@ class UserSubmitButton extends Component {
   }
 }
 
-export default withStyles(styles)(UserSubmitButton)
+export default withStyles(styles)(QuizSubmitButton)

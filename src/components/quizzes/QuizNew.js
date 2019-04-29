@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import QuestionNew from '../questions/QuestionNew'
+import QuizInput from './elements/QuizInput'
+import QuizAddQuestionButton from './elements/QuizAddQuestionButton'
+import QuizSubmitButton from './elements/QuizSubmitButton'
 
 class QuizNew extends Component {
   constructor() {
@@ -100,6 +103,11 @@ class QuizNew extends Component {
     .then(json => this.props.history.push(`/quizzes/${json.quiz.id}/`))
   }
 
+  // <div><input type="text" name="title" value={this.state.title} placeholder="Title" onChange={this.quizChangeHandler}/></div>
+  // <div><input type="text" name="description" value={this.state.description} placeholder="Description" onChange={this.quizChangeHandler}></input></div>
+  // <button type="button" onClick={this.clickHandler}>Add Question</button>
+  // <button type="submit">Create Quiz</button>
+
   render() {
     let questions = this.state.questions_attributes.map((question, index) => {
       return <QuestionNew key={index} index={index} question={question} questionChangeHandler={this.questionChangeHandler} removeQuestion={this.removeQuestion} choiceChangeHandler={this.choiceChangeHandler}/>
@@ -109,11 +117,23 @@ class QuizNew extends Component {
       <div>
         <h1>Quiz Form</h1>
         <form onSubmit={this.submitHandler}>
-          <div><input type="text" name="title" value={this.state.title} placeholder="Title" onChange={this.quizChangeHandler}/></div>
-          <div><input type="text" name="description" value={this.state.description} placeholder="Description" onChange={this.quizChangeHandler}></input></div>
+          <QuizInput
+            type="text"
+            name="title"
+            value={this.state.title}
+            placeholder="Title"
+            onChange={this.quizChangeHandler}
+          />
+          <QuizInput
+            type="text"
+            name="description"
+            value={this.state.description}
+            placeholder="Description"
+            onChange={this.quizChangeHandler}
+          />
           {questions}
-          <button type="button" onClick={this.clickHandler}>Add Question</button>
-          <button type="submit">Create Quiz</button>
+          <QuizAddQuestionButton onClick={this.clickHandler}>Add Question</QuizAddQuestionButton>
+          <QuizSubmitButton>Create Quiz</QuizSubmitButton>
         </form>
       </div>
     )
