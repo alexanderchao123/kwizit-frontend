@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import RoundJoinBody from './elements/RoundJoinBody'
 import RoundJoinFormWrapper from './elements/RoundJoinFormWrapper'
+import RoundJoinForm from './elements/RoundJoinForm'
 import RoundInput from './elements/RoundInput'
 import RoundSubmitButton from './elements/RoundSubmitButton'
 import styled from 'styled-components'
@@ -61,7 +62,7 @@ class RoundJoin extends Component {
     return (
       <RoundJoinBody>
         <RoundJoinFormWrapper>
-          <StyledForm onSubmit={this.submitHandler}>
+          <RoundJoinForm onSubmit={this.submitHandler}>
             <StyledHeader>Join A Round</StyledHeader>
             <RoundInput
               type="text"
@@ -71,7 +72,7 @@ class RoundJoin extends Component {
               onChange={this.changeHandler}
             />
             <RoundSubmitButton>Join</RoundSubmitButton>
-          </StyledForm>
+          </RoundJoinForm>
         </RoundJoinFormWrapper>
       </RoundJoinBody>
     )
