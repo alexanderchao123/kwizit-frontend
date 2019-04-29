@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import RoundInput from './RoundInput'
-import RoundSubmitButton from './RoundSubmitButton'
+import RoundJoinBody from './elements/RoundJoinBody'
+import RoundInput from './elements/RoundInput'
+import RoundSubmitButton from './elements/RoundSubmitButton'
 import styled from 'styled-components'
 
-const RoundJoinBody = styled.div`
-  width: 100%;
-  height: 100%;
-  background: #FFF1E6;
-`
+// const RoundJoinBody = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   background: #FFF1E6;
+// `
 
 const FormWrapper = styled.div`
   width: 350px;

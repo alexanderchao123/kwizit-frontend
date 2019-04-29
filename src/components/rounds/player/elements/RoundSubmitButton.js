@@ -6,9 +6,9 @@ const styles = {
     width: '100%',
     height: '45px',
     margin: '5px 0px',
-    fontSize: '18px',
-    fontWeight: '600',
     borderRadius: '0px',
+    fontSize: '22px',
+    fontWeight: '600',
     color: 'white',
     backgroundColor: '#7C5CFF',
     '&:hover': {
@@ -20,7 +20,7 @@ const styles = {
 class RoundSubmitButton extends Component {
   render() {
     const { classes } = this.props
-    
+
     return(
       <Button {...this.props}
         type="submit"

@@ -6,9 +6,9 @@ const styles = {
     width: '100%',
     height: '45px',
     margin: '5px 0px',
-    borderRadius: '0px',
-    fontSize: '22px',
+    fontSize: '18px',
     fontWeight: '600',
+    borderRadius: '0px',
     color: 'white',
     backgroundColor: '#7C5CFF',
     '&:hover': {

@@ -6,10 +6,10 @@ const styles = {
     width: '100%',
     height: '45px',
     margin: '10px 0px',
-    fontSize: '18px',
-    fontWeight: '600',
-    border: '2px solid #7C5CFF',
     borderRadius: '0px',
+    border: '2px solid #7C5CFF',
+    fontSize: '22px',
+    fontWeight: '600',
     color: '#7C5CFF',
   },
   input: {
