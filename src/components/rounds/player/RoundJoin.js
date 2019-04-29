@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RoundJoinBody from './elements/RoundJoinBody'
+import RoundJoinFormWrapper from './elements/RoundJoinFormWrapper'
 import RoundInput from './elements/RoundInput'
 import RoundSubmitButton from './elements/RoundSubmitButton'
 import styled from 'styled-components'
@@ -10,13 +11,13 @@ import styled from 'styled-components'
 //   background: #FFF1E6;
 // `
 
-const FormWrapper = styled.div`
-  width: 350px;
-  height: 500px;
-  margin: auto;
-  padding: 50px 0px;
-  display: table;
-`
+// const FormWrapper = styled.div`
+//   width: 350px;
+//   height: 500px;
+//   margin: auto;
+//   padding: 50px 0px;
+//   display: table;
+// `
 
 const StyledForm = styled.form`
   display: table-cell;
@@ -59,7 +60,7 @@ class RoundJoin extends Component {
   render() {
     return (
       <RoundJoinBody>
-        <FormWrapper>
+        <RoundJoinFormWrapper>
           <StyledForm onSubmit={this.submitHandler}>
             <StyledHeader>Join A Round</StyledHeader>
             <RoundInput
@@ -71,7 +72,7 @@ class RoundJoin extends Component {
             />
             <RoundSubmitButton>Join</RoundSubmitButton>
           </StyledForm>
-        </FormWrapper>
+        </RoundJoinFormWrapper>
       </RoundJoinBody>
     )
   }
