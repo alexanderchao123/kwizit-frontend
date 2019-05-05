@@ -9,7 +9,7 @@ const StyledFormWrapper = styled.div`
   display: table;
 `
 
-class RoundJoinFormWrapper extends Component {
+class RoundFormWrapper extends Component {
   render() {
     return(
       <Fragment>
@@ -19,4 +19,4 @@ class RoundJoinFormWrapper extends Component {
   }
 }
 
-export default RoundJoinFormWrapper
+export default RoundFormWrapper

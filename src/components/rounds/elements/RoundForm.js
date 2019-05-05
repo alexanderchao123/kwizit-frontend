@@ -7,7 +7,7 @@ const StyledForm = styled.form`
   vertical-align: middle;
 `
 
-class RoundJoinForm extends Component {
+class RoundForm extends Component {
   render() {
     return(
       <Fragment>
@@ -17,4 +17,4 @@ class RoundJoinForm extends Component {
   }
 }
 
-export default RoundJoinForm
+export default RoundForm

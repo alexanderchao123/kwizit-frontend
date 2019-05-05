@@ -7,7 +7,7 @@ const StyledHeader = styled.h1`
   font-size: 35px;
 `
 
-class RoundJoinHeader extends Component {
+class RoundHeader extends Component {
   render() {
     return(
       <Fragment>
@@ -17,4 +17,4 @@ class RoundJoinHeader extends Component {
   }
 }
 
-export default RoundJoinHeader
+export default RoundHeader

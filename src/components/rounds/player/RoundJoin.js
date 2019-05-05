@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import RoundJoinBody from './elements/RoundJoinBody'
-import RoundJoinFormWrapper from './elements/RoundJoinFormWrapper'
-import RoundJoinForm from './elements/RoundJoinForm'
-import RoundJoinHeader from './elements/RoundJoinHeader'
-import RoundInput from './elements/RoundInput'
-import RoundSubmitButton from './elements/RoundSubmitButton'
+import RoundBody from '../elements/RoundBody'
+import RoundFormWrapper from '../elements/RoundFormWrapper'
+import RoundForm from '../elements/RoundForm'
+import RoundHeader from '../elements/RoundHeader'
+import RoundInput from '../elements/RoundInput'
+import RoundSubmitButton from '../elements/RoundSubmitButton'
 
 class RoundJoin extends Component {
   constructor() {
@@ -34,10 +34,10 @@ class RoundJoin extends Component {
 
   render() {
     return (
-      <RoundJoinBody>
-        <RoundJoinFormWrapper>
-          <RoundJoinForm onSubmit={this.submitHandler}>
-            <RoundJoinHeader>Join A Round</RoundJoinHeader>
+      <RoundBody>
+        <RoundFormWrapper>
+          <RoundForm onSubmit={this.submitHandler}>
+            <RoundHeader>Join A Round</RoundHeader>
             <RoundInput
               type="text"
               name="pin"
@@ -46,9 +46,9 @@ class RoundJoin extends Component {
               onChange={this.changeHandler}
             />
             <RoundSubmitButton>Join</RoundSubmitButton>
-          </RoundJoinForm>
-        </RoundJoinFormWrapper>
-      </RoundJoinBody>
+          </RoundForm>
+        </RoundFormWrapper>
+      </RoundBody>
     )
   }
 }

@@ -7,7 +7,7 @@ const StyledBody = styled.div`
   background: #FFF1E6;
 `
 
-class RoundJoinBody extends Component {
+class RoundBody extends Component {
   render() {
     return(
       <Fragment>
@@ -17,4 +17,4 @@ class RoundJoinBody extends Component {
   }
 }
 
-export default RoundJoinBody
+export default RoundBody
